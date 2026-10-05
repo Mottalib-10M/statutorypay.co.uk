@@ -1,0 +1,225 @@
+{
+  "_lisezmoi": "Every statutory figure used by the site lives here, never hard-coded in a page (RECETTE §4, §17.4). Each value was read at the official source named in `sources` on `retrieved_at`. Next review: the April 2027 uprating (Employment Rights (Increase of Limits) Orders, Social Security Benefits Up-rating Orders, HMRC rates and thresholds 2027 to 2028).",
+  "year": 2026,
+  "taxYear": "2026/27",
+  "retrieved_at": "2026-10-05",
+  "valid_from": "2026-04-06",
+  "valid_to": "2027-04-05",
+
+  "redundancy": {
+    "_source": "Employment Rights (Increase of Limits) Order 2026 (SI 2026/310), Schedule, s.227(1) ERA 1996; NI: SR 2026/57, art. 23(1) ERNIO 1996. The cap that applies is the one in force on the relevant date (art. 4 transitional provisions).",
+    "weeklyCapGB": [
+      { "from": "2022-04-06", "cap": 571 },
+      { "from": "2023-04-06", "cap": 643 },
+      { "from": "2024-04-06", "cap": 700 },
+      { "from": "2025-04-06", "cap": 719 },
+      { "from": "2026-04-06", "cap": 751 }
+    ],
+    "weeklyCapNI": [
+      { "from": "2022-04-06", "cap": 594 },
+      { "from": "2023-04-06", "cap": 669 },
+      { "from": "2024-04-06", "cap": 729 },
+      { "from": "2025-04-06", "cap": 749 },
+      { "from": "2026-04-06", "cap": 783 }
+    ],
+    "qualifyingYears": 2,
+    "maxYears": 20,
+    "bands": [
+      { "fromAge": 41, "weeks": 1.5 },
+      { "fromAge": 22, "weeks": 1 },
+      { "fromAge": 0, "weeks": 0.5 }
+    ],
+    "claimMonths": 6,
+    "averagingWeeks": 12,
+    "layOffWeeksInRow": 4,
+    "layOffWeeksIn13": 6,
+    "trialPeriodWeeks": 4,
+    "jobSearchPayCapShareOfWeek": 0.4,
+    "collectiveThreshold20": 20,
+    "collectiveDays20to99": 30,
+    "collectiveThreshold100": 100,
+    "collectiveDays100plus": 45
+  },
+
+  "termination": {
+    "_source": "ITEPA 2003 s.403 (first £30,000 of a termination award exempt); HMRC rates and thresholds 2026 to 2027 (Class 1A at 15% on termination awards above £30,000).",
+    "taxFreeThreshold": 30000,
+    "class1ARate": 0.15
+  },
+
+  "notice": {
+    "_source": "Employment Rights Act 1996 s.86; Employment Rights (Northern Ireland) Order 1996 art. 118 (same scale).",
+    "minServiceMonths": 1,
+    "underTwoYearsWeeks": 1,
+    "maxWeeks": 12,
+    "employeeWeeks": 1
+  },
+
+  "holiday": {
+    "_source": "Working Time Regulations 1998 regs 13, 13A, 14, 15A, 15B, 16, 16A (GB); Working Time Regulations (Northern Ireland) 2016; gov.uk Holiday entitlement guide.",
+    "statutoryWeeks": 5.6,
+    "basicWeeks": 4,
+    "additionalWeeks": 1.6,
+    "maxDays": 28,
+    "irregularAccrualRate": 0.1207,
+    "irregularRegimeFrom": "2024-04-01",
+    "referenceWeeks": 52,
+    "maxLookbackWeeks": 104,
+    "carryOverMaxDays": 8,
+    "sickCarryOverRegularDays": 20,
+    "sickCarryOverIrregularDays": 28,
+    "recordsYears": 6,
+    "recordsFrom": "2026-04-06"
+  },
+
+  "familyPay": {
+    "_source": "HMRC Rates and thresholds for employers 2026 to 2027 (updated 1 September 2026); Social Security Benefits Up-rating Order 2026 (SI 2026/148) arts 9-10; NI: SR 2026/59 arts 9-10.",
+    "rates": [
+      { "from": "2024-04-07", "weekly": 184.03 },
+      { "from": "2025-04-06", "weekly": 187.18 },
+      { "from": "2026-04-05", "weekly": 194.32 }
+    ],
+    "_rateChange": "The new SMP/SAP/ShPP/SPP rate starts with the first pay week beginning on or after the first Sunday in April (5 April 2026), the method used by HMRC's own calculator.",
+    "earningsShare": 0.9,
+    "lowerEarningsLimit": [
+      { "from": "2024-04-06", "lel": 123 },
+      { "from": "2025-04-06", "lel": 125 },
+      { "from": "2026-04-06", "lel": 129 }
+    ],
+    "smpWeeks": 39,
+    "smpHigherRateWeeks": 6,
+    "maternityLeaveWeeks": 52,
+    "ordinaryLeaveWeeks": 26,
+    "compulsoryLeaveWeeks": 2,
+    "compulsoryLeaveFactoryWeeks": 4,
+    "earliestStartWeeksBeforeEWC": 11,
+    "qualifyingWeekBeforeEWC": 15,
+    "serviceWeeks": 26,
+    "noticeDaysPay": 28,
+    "returnChangeNoticeWeeks": 8,
+    "kitDays": 10,
+    "sickTriggerWeeksBeforeEWC": 4,
+    "paternityWeeks": 2,
+    "paternityWindowWeeksGB": 52,
+    "paternityWindowDaysNI": 56,
+    "paternityDayOneGBFrom": "2026-04-06",
+    "splLeaveWeeks": 50,
+    "shppWeeks": 37,
+    "maWeeks": 39,
+    "maEarningsThreshold": 30,
+    "maTestPeriodWeeks": 66,
+    "maMinWeeksWorked": 26,
+    "maLowRate": 27,
+    "neonatalMaxWeeks": 12,
+    "neonatalWindowWeeks": 68,
+    "bereavementWeeks": 2,
+    "bereavementWindowWeeks": 56,
+    "parentalLeaveWeeksPerChild": 18,
+    "parentalLeaveWeeksPerYear": 4,
+    "parentalLeaveAgeLimit": 18,
+    "smallEmployerRecovery": 1.09,
+    "standardRecovery": 0.92,
+    "smallEmployerNicThreshold": 45000
+  },
+
+  "ssp": {
+    "_source": "Employment Rights Act 2025 ss.10-13, in force 6 April 2026 (SI 2026/373); SSCBA 1992 s.157(1) as amended; Up-rating Order 2026 art. 8 (GB) and SR 2026/59 art. 8 (NI); HMRC Rates and thresholds 2026 to 2027 daily-rate tables.",
+    "weeklyRate": 123.25,
+    "earningsShare": 0.8,
+    "reformDate": "2026-04-06",
+    "maxWeeks": 28,
+    "linkGapWeeks": 8,
+    "linkedSeriesMaxYears": 3,
+    "fitNoteAfterDays": 7,
+    "ssp1Week": 23,
+    "pre2026": { "weeklyRate": 118.75, "lel": 125, "waitingDays": 3, "minPiwDays": 4 }
+  },
+
+  "minimumWage": {
+    "_source": "HMRC Rates and thresholds 2026 to 2027 (rates from 1 April 2026). Used only as a floor check for hourly inputs.",
+    "from": "2026-04-01",
+    "age21plus": 12.71,
+    "age18to20": 10.85,
+    "under18": 8,
+    "apprentice": 8
+  },
+
+  "bankHolidays": {
+    "_source": "gov.uk/bank-holidays.json, read 2026-10-05.",
+    "england-and-wales": [
+      ["2026-01-01", "New Year’s Day"], ["2026-04-03", "Good Friday"], ["2026-04-06", "Easter Monday"], ["2026-05-04", "Early May bank holiday"], ["2026-05-25", "Spring bank holiday"], ["2026-08-31", "Summer bank holiday"], ["2026-12-25", "Christmas Day"], ["2026-12-28", "Boxing Day"],
+      ["2027-01-01", "New Year’s Day"], ["2027-03-26", "Good Friday"], ["2027-03-29", "Easter Monday"], ["2027-05-03", "Early May bank holiday"], ["2027-05-31", "Spring bank holiday"], ["2027-08-30", "Summer bank holiday"], ["2027-12-27", "Christmas Day"], ["2027-12-28", "Boxing Day"]
+    ],
+    "scotland": [
+      ["2026-01-01", "New Year’s Day"], ["2026-01-02", "2nd January"], ["2026-04-03", "Good Friday"], ["2026-05-04", "Early May bank holiday"], ["2026-05-25", "Spring bank holiday"], ["2026-06-15", "World Cup bank holiday"], ["2026-08-03", "Summer bank holiday"], ["2026-11-30", "St Andrew’s Day"], ["2026-12-25", "Christmas Day"], ["2026-12-28", "Boxing Day"],
+      ["2027-01-01", "New Year’s Day"], ["2027-01-04", "2nd January"], ["2027-03-26", "Good Friday"], ["2027-05-03", "Early May bank holiday"], ["2027-05-31", "Spring bank holiday"], ["2027-08-02", "Summer bank holiday"], ["2027-11-30", "St Andrew’s Day"], ["2027-12-27", "Christmas Day"], ["2027-12-28", "Boxing Day"]
+    ],
+    "northern-ireland": [
+      ["2026-01-01", "New Year’s Day"], ["2026-03-17", "St Patrick’s Day"], ["2026-04-03", "Good Friday"], ["2026-04-06", "Easter Monday"], ["2026-05-04", "Early May bank holiday"], ["2026-05-25", "Spring bank holiday"], ["2026-07-13", "Battle of the Boyne (Orangemen’s Day)"], ["2026-08-31", "Summer bank holiday"], ["2026-12-25", "Christmas Day"], ["2026-12-28", "Boxing Day"],
+      ["2027-01-01", "New Year’s Day"], ["2027-03-17", "St Patrick’s Day"], ["2027-03-26", "Good Friday"], ["2027-03-29", "Easter Monday"], ["2027-05-03", "Early May bank holiday"], ["2027-05-31", "Spring bank holiday"], ["2027-07-12", "Battle of the Boyne (Orangemen’s Day)"], ["2027-08-30", "Summer bank holiday"], ["2027-12-27", "Christmas Day"], ["2027-12-28", "Boxing Day"]
+    ]
+  },
+
+  "sources": {
+    "govRedundancy": { "url": "https://www.gov.uk/redundancy-your-rights", "label": { "en": "GOV.UK, Redundancy: your rights (statutory redundancy pay, notice periods, consultation)" } },
+    "govRedundancyCalc": { "url": "https://www.gov.uk/calculate-your-redundancy-pay", "label": { "en": "GOV.UK, Calculate your statutory redundancy pay" } },
+    "limitsOrder2026": { "url": "https://www.legislation.gov.uk/uksi/2026/310/made", "label": { "en": "The Employment Rights (Increase of Limits) Order 2026, SI 2026/310 (week’s pay cap £751 from 6 April 2026)" } },
+    "limitsOrder2025": { "url": "https://www.legislation.gov.uk/uksi/2025/348/made", "label": { "en": "The Employment Rights (Increase of Limits) Order 2025, SI 2025/348 (£719)" } },
+    "limitsOrderNI2026": { "url": "https://www.legislation.gov.uk/nisr/2026/57/made", "label": { "en": "The Employment Rights (Increase of Limits) Order (Northern Ireland) 2026, SR 2026/57 (£783)" } },
+    "era86": { "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/86", "label": { "en": "Employment Rights Act 1996, section 86 (minimum notice)" } },
+    "era145": { "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/145", "label": { "en": "Employment Rights Act 1996, section 145 (the relevant date)" } },
+    "era155": { "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/155", "label": { "en": "Employment Rights Act 1996, section 155 (two-year qualifying period)" } },
+    "era162": { "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/162", "label": { "en": "Employment Rights Act 1996, section 162 (amount of a redundancy payment)" } },
+    "era221": { "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/221", "label": { "en": "Employment Rights Act 1996, sections 221 to 224 (a week’s pay)" } },
+    "era226": { "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/226", "label": { "en": "Employment Rights Act 1996, section 226 (calculation date on termination)" } },
+    "acasRedundancyPay": { "url": "https://www.acas.org.uk/manage-staff-redundancies/work-out-redundancy-pay", "label": { "en": "Acas, Work out redundancy pay" } },
+    "acasNotice": { "url": "https://www.acas.org.uk/notice-periods", "label": { "en": "Acas, Notice periods" } },
+    "nidRedundancy": { "url": "https://www.nidirect.gov.uk/articles/redundancy-pay", "label": { "en": "nidirect, Redundancy pay (Northern Ireland: weekly cap £783, maximum £23,490)" } },
+    "nidNotice": { "url": "https://www.nidirect.gov.uk/articles/giving-or-getting-notice-your-job", "label": { "en": "nidirect, Giving or getting notice at your job" } },
+    "govNoticeResign": { "url": "https://www.gov.uk/handing-in-your-notice", "label": { "en": "GOV.UK, Handing in your notice" } },
+    "hmrcTermination": { "url": "https://www.gov.uk/hmrc-internal-manuals/employment-income-manual/eim13505", "label": { "en": "HMRC Employment Income Manual, EIM13505 (the £30,000 threshold for termination payments)" } },
+    "govHoliday": { "url": "https://www.gov.uk/holiday-entitlement-rights", "label": { "en": "GOV.UK, Holiday entitlement (entitlement, holiday pay, rolled-up holiday pay, carrying over)" } },
+    "govHolidayCalc": { "url": "https://www.gov.uk/calculate-your-holiday-entitlement", "label": { "en": "GOV.UK, Calculate holiday entitlement" } },
+    "wtr13": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/13", "label": { "en": "Working Time Regulations 1998, regulation 13 (four weeks, leave year, carrying over)" } },
+    "wtr13A": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/13A", "label": { "en": "Working Time Regulations 1998, regulation 13A (additional 1.6 weeks, 28-day cap)" } },
+    "wtr14": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/14", "label": { "en": "Working Time Regulations 1998, regulation 14 (payment in lieu on termination)" } },
+    "wtr15A": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/15A", "label": { "en": "Working Time Regulations 1998, regulation 15A (leave in the first year)" } },
+    "wtr15B": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/15B", "label": { "en": "Working Time Regulations 1998, regulation 15B (irregular hours and part-year workers, 12.07%)" } },
+    "wtr16": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/16", "label": { "en": "Working Time Regulations 1998, regulation 16 (holiday pay, 52-week reference period)" } },
+    "wtr16A": { "url": "https://www.legislation.gov.uk/uksi/1998/1833/regulation/16A", "label": { "en": "Working Time Regulations 1998, regulation 16A (rolled-up holiday pay)" } },
+    "si2023_1426": { "url": "https://www.legislation.gov.uk/uksi/2023/1426/made", "label": { "en": "The Employment Rights (Amendment, Revocation and Transitional Provision) Regulations 2023, SI 2023/1426 (holiday reforms, Great Britain only)" } },
+    "acasHolidayPay": { "url": "https://www.acas.org.uk/checking-holiday-entitlement/calculating-holiday-pay", "label": { "en": "Acas, Calculating holiday pay" } },
+    "nidHoliday": { "url": "https://www.nidirect.gov.uk/articles/holiday-entitlements", "label": { "en": "nidirect, Holiday entitlements (Northern Ireland)" } },
+    "nidBankHolidays": { "url": "https://www.nidirect.gov.uk/articles/bank-holidays", "label": { "en": "nidirect, Bank holidays (Northern Ireland)" } },
+    "govBankHolidays": { "url": "https://www.gov.uk/bank-holidays", "label": { "en": "GOV.UK, UK bank holidays (England and Wales, Scotland, Northern Ireland)" } },
+    "hmrcRates": { "url": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027", "label": { "en": "HMRC, Rates and thresholds for employers 2026 to 2027 (SMP, SPP, SAP, ShPP, SSP, lower earnings limit)" } },
+    "upratingOrder2026": { "url": "https://www.legislation.gov.uk/uksi/2026/148/made", "label": { "en": "The Social Security Benefits Up-rating Order 2026, SI 2026/148 (SSP £123.25, SMP £194.32)" } },
+    "upratingOrderNI2026": { "url": "https://www.legislation.gov.uk/nisr/2026/59/made", "label": { "en": "The Social Security Benefits Up-rating Order (Northern Ireland) 2026, SR 2026/59" } },
+    "govMaternityPay": { "url": "https://www.gov.uk/maternity-pay-leave", "label": { "en": "GOV.UK, Maternity pay and leave" } },
+    "govEmployerSmp": { "url": "https://www.gov.uk/employers-maternity-pay-leave", "label": { "en": "GOV.UK, Statutory Maternity Pay and Leave: employer guide" } },
+    "nidSmp": { "url": "https://www.nidirect.gov.uk/articles/smp-how-it-worked-out", "label": { "en": "nidirect, SMP: how it is worked out (Northern Ireland)" } },
+    "govMaternityAllowance": { "url": "https://www.gov.uk/maternity-allowance", "label": { "en": "GOV.UK, Maternity Allowance" } },
+    "govPaternity": { "url": "https://www.gov.uk/paternity-pay-leave", "label": { "en": "GOV.UK, Paternity pay and leave" } },
+    "nidPaternityLeave": { "url": "https://www.nidirect.gov.uk/articles/paternity-leave", "label": { "en": "nidirect, Paternity leave (Northern Ireland)" } },
+    "nidPaternityPay": { "url": "https://www.nidirect.gov.uk/articles/statutory-paternity-pay", "label": { "en": "nidirect, Statutory Paternity Pay (Northern Ireland)" } },
+    "govShared": { "url": "https://www.gov.uk/shared-parental-leave-and-pay", "label": { "en": "GOV.UK, Shared Parental Leave and Pay" } },
+    "nidShared": { "url": "https://www.nidirect.gov.uk/articles/shared-parental-leave-and-pay", "label": { "en": "nidirect, Shared Parental Leave and Pay (Northern Ireland)" } },
+    "govAdoption": { "url": "https://www.gov.uk/adoption-pay-leave", "label": { "en": "GOV.UK, Adoption pay and leave" } },
+    "nidAdoption": { "url": "https://www.nidirect.gov.uk/articles/statutory-adoption-pay", "label": { "en": "nidirect, Statutory Adoption Pay (Northern Ireland)" } },
+    "govNeonatal": { "url": "https://www.gov.uk/neonatal-care-pay-leave", "label": { "en": "GOV.UK, Neonatal Care Pay and Leave" } },
+    "govBereavement": { "url": "https://www.gov.uk/parental-bereavement-pay-leave", "label": { "en": "GOV.UK, Statutory Parental Bereavement Pay and Leave" } },
+    "govParentalLeave": { "url": "https://www.gov.uk/parental-leave", "label": { "en": "GOV.UK, Unpaid parental leave" } },
+    "era2025": { "url": "https://www.legislation.gov.uk/ukpga/2025/36/contents", "label": { "en": "Employment Rights Act 2025 (SSP from day one, paternity and parental leave from day one, annual leave records)" } },
+    "era2025s16": { "url": "https://www.legislation.gov.uk/ukpga/2025/36/section/16", "label": { "en": "Employment Rights Act 2025, section 16 (paternity leave: no qualifying period, in force 6 April 2026)" } },
+    "ssp2026Commencement": { "url": "https://www.legislation.gov.uk/uksi/2026/373/made", "label": { "en": "The Employment Rights Act 2025 (Commencement No. 3 and Transitional Provisions) Regulations 2026, SI 2026/373" } },
+    "govSsp": { "url": "https://www.gov.uk/statutory-sick-pay", "label": { "en": "GOV.UK, Statutory Sick Pay (SSP)" } },
+    "govEmployerSsp": { "url": "https://www.gov.uk/employers-sick-pay", "label": { "en": "GOV.UK, Statutory Sick Pay: employer guide" } },
+    "acasSsp": { "url": "https://www.acas.org.uk/checking-sick-pay/statutory-sick-pay-ssp", "label": { "en": "Acas, Statutory Sick Pay (SSP)" } },
+    "nidSsp": { "url": "https://www.nidirect.gov.uk/articles/statutory-sick-pay", "label": { "en": "nidirect, Statutory Sick Pay (Northern Ireland)" } },
+    "govTakingSick": { "url": "https://www.gov.uk/taking-sick-leave", "label": { "en": "GOV.UK, Taking sick leave (fit notes)" } },
+    "govEmploymentStatus": { "url": "https://www.gov.uk/employment-status", "label": { "en": "GOV.UK, Employment status (employee, worker, self-employed)" } },
+    "govPartTime": { "url": "https://www.gov.uk/part-time-worker-rights", "label": { "en": "GOV.UK, Part-time workers’ rights" } },
+    "govDismissal": { "url": "https://www.gov.uk/dismissal", "label": { "en": "GOV.UK, Dismissal: your rights" } },
+    "smartAnswers": { "url": "https://github.com/alphagov/smart-answers", "label": { "en": "GOV.UK smart-answers source code (the official calculators’ rules, used as a test oracle)" } }
+  }
+}

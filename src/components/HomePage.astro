@@ -1,0 +1,112 @@
+---
+/**
+ * Home page (pillar). Its own layout, built for the subject (RECETTE §6.6 rule 2): a rights checker
+ * by length of service first, then the 2026/27 figures with their legal dates, the calculator
+ * directory by life event, the Great Britain / Northern Ireland differences, the April 2026 changes,
+ * then the long text and the FAQ. Text in src/content/home.ts.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Clamp from './Clamp.astro';
+import RightsChecker from './calc/RightsChecker';
+import { HOME } from '../content/home';
+import { route } from '../i18n/routes';
+import { label, groupLabel } from '../i18n/nav';
+import { PAGES, GROUPS } from '../lib/guides';
+import { helpers } from '../lib/helpers';
+import { P, CAP_GB, CAP_NI, MAX_REDUNDANCY_GB, MAX_REDUNDANCY_NI, FAMILY_RATE, LEL, type SourceKey } from '../lib/engine/params';
+import { formatMoney, formatPercent, displayDate } from '../lib/format';
+import { faqSchema, organizationSchema, websiteSchema, webPageSchema } from '../lib/seo';
+import { LAST_UPDATED } from '../data/site-config';
+const lang = 'en';
+const x = HOME;
+const h = helpers();
+const path = route('home', lang);
+const keys: SourceKey[] = ['limitsOrder2026', 'limitsOrderNI2026', 'hmrcRates', 'upratingOrder2026', 'era162', 'era86', 'wtr15B', 'wtr16', 'ssp2026Commencement', 'era2025s16', 'govBankHolidays', 'nidRedundancy'];
+const sources = keys.map((k) => ({ name: P.sources[k].label.en, url: P.sources[k].url }));
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(x.faqs, lang)];
+const g = (n: number, d = 0) => formatMoney(n, d);
+const date = (iso: string) => displayDate(iso, 'en-GB');
+const links = { notice: route('notice-period-calculator', lang), redundancy: route('redundancy-pay-calculator', lang), holiday: route('holiday-entitlement-calculator', lang), ssp: route('statutory-sick-pay-calculator', lang), smp: route('maternity-pay-calculator', lang), paternity: route('paternity-pay-calculator', lang) };
+const figures: Array<[string, string, string, SourceKey]> = [
+  ['Redundancy: maximum week’s pay', `${g(CAP_GB)} (NI ${g(CAP_NI)})`, `relevant date from ${date('2026-04-06')}`, 'limitsOrder2026'],
+  ['Redundancy: maximum statutory payment', `${g(MAX_REDUNDANCY_GB)} (NI ${g(MAX_REDUNDANCY_NI)})`, '30 weeks × cap', 'era162'],
+  ['SMP, SAP, ShPP, SPP: flat weekly rate', g(FAMILY_RATE, 2), `pay weeks from ${date('2026-04-05')}`, 'hmrcRates'],
+  ['Lower earnings limit for family pay', `${g(LEL)} a week`, `qualifying weeks ending from ${date('2026-04-11')}`, 'hmrcRates'],
+  ['Statutory Sick Pay', `${g(P.ssp.weeklyRate, 2)} or 80% of earnings`, `from day one since ${date(P.ssp.reformDate)}`, 'ssp2026Commencement'],
+  ['Holiday', `5.6 weeks, at most ${P.holiday.maxDays} days`, `irregular hours: ${formatPercent(P.holiday.irregularAccrualRate, 2)} of hours (GB)`, 'wtr15B'],
+  ['Statutory notice from the employer', `1 to ${P.notice.maxWeeks} weeks`, 'one week per complete year from 2 years', 'era86'],
+  ['Tax-free part of redundancy pay', g(P.termination.taxFreeThreshold), 'notice and holiday pay are taxed', 'hmrcTermination'],
+];
+const differences: Array<[string, string, string]> = [
+  ['Redundancy pay cap (2026/27)', g(CAP_GB), g(CAP_NI)],
+  ['Holiday for irregular hours', `${formatPercent(P.holiday.irregularAccrualRate, 2)} of hours worked, rolled-up pay allowed`, '5.6 weeks a year, no rolled-up pay'],
+  ['Paternity leave', 'Day one; two weeks, separate or together, within 52 weeks', '26 weeks’ service; one block within 56 days'],
+  ['Bank holidays in 2026', String((P.bankHolidays['england-and-wales'] as string[][]).filter(([d]) => d.startsWith('2026')).length) + ' (England and Wales), ' + String((P.bankHolidays.scotland as string[][]).filter(([d]) => d.startsWith('2026')).length) + ' (Scotland)', String((P.bankHolidays['northern-ireland'] as string[][]).filter(([d]) => d.startsWith('2026')).length)],
+  ['Statutory Sick Pay', `${g(P.ssp.weeklyRate, 2)}, day one`, `${g(P.ssp.weeklyRate, 2)}, day one`],
+  ['Free advice', 'Acas', 'Labour Relations Agency'],
+];
+const changes: Array<[string, string]> = [
+  [P.ssp.reformDate, 'Statutory Sick Pay from the first day of sickness, no lower earnings limit, capped at 80% of earnings (Great Britain and Northern Ireland).'],
+  [P.familyPay.paternityDayOneGBFrom, 'Paternity leave and unpaid parental leave become day-one rights in Great Britain.'],
+  ['2026-04-06', `New redundancy cap: ${g(CAP_GB)} in Great Britain, ${g(CAP_NI)} in Northern Ireland.`],
+  ['2026-04-05', `Family pay flat rate rises to ${g(FAMILY_RATE, 2)}; the lower earnings limit becomes ${g(LEL)}.`],
+  [P.holiday.recordsFrom, `Employers must keep holiday and holiday pay records for ${P.holiday.recordsYears} years.`],
+];
+---
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} sources={sources}>
+  <header class="mb-6 border-b-4 border-double border-navy-200 pb-5">
+    <p class="kicker">2026/27 tax year · figures read on <time datetime={LAST_UPDATED}>{date(LAST_UPDATED)}</time></p>
+    <h1 class="mt-2 text-3xl font-bold text-navy-900 md:text-5xl">{x.h1}</h1>
+    <p class="mt-3 max-w-none text-lg text-navy-700">{x.intro}</p>
+  </header>
+  <Clamp text={x.resume} id="clamp-home" sentences={2} class="mb-6" />
+
+  <section aria-labelledby="checker" class="mb-12">
+    <h2 id="checker" class="mb-1 text-2xl font-bold text-navy-900">What the law gives you today, from your start date</h2>
+    <p class="mb-4 text-navy-700">Three dates and your pay: each line opens the full calculator for that right.</p>
+    <div data-chrome><RightsChecker client:load links={links} /></div>
+  </section>
+
+  <section aria-labelledby="figures" class="mb-12">
+    <h2 id="figures" class="mb-4 text-2xl font-bold text-navy-900">The 2026/27 figures and the dates they start</h2>
+    <div class="overflow-x-auto"><table class="journal w-full text-sm">
+      <thead><tr><th scope="col" class="py-2 pr-3 text-left">Right</th><th scope="col" class="py-2 pr-3 text-left">Figure</th><th scope="col" class="py-2 pr-3 text-left">Applies</th><th scope="col" class="py-2 text-left">Source</th></tr></thead>
+      <tbody>{figures.map(([a, b, c, k]) => <tr class="border-t border-navy-100"><th scope="row" class="py-2 pr-3 text-left font-medium text-navy-900">{a}</th><td class="tabular-nums py-2 pr-3 font-semibold text-navy-900">{b}</td><td class="py-2 pr-3 text-navy-700">{c}</td><td class="py-2"><a href={P.sources[k].url} target="_blank" rel="nofollow noopener noreferrer" class="text-accent-700 underline">{P.sources[k].url.replace(/^https:\/\/(www\.)?/, '').split('/')[0]}</a></td></tr>)}</tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="directory" class="mb-12" data-chrome>
+    <h2 id="directory" class="mb-4 text-2xl font-bold text-navy-900">Pick the situation you are in</h2>
+    <div class="grid gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
+      {GROUPS.map((grp) => (
+        <div class="border-t-2 border-accent-500 pt-3">
+          <h3 class="text-lg font-semibold text-navy-900">{groupLabel(grp)}</h3>
+          <ul class="mt-2 space-y-1.5 text-sm">{PAGES.filter((p) => p.group === grp).map((p) => <li><a href={route(p.id, lang)} class={p.tool ? 'font-semibold text-accent-700 hover:underline' : 'text-navy-700 hover:text-accent-700 hover:underline'}>{p.nav}</a></li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="nations" class="mb-12">
+    <h2 id="nations" class="mb-4 text-2xl font-bold text-navy-900">Great Britain and Northern Ireland: where the rules part ways</h2>
+    <div class="overflow-x-auto"><table class="journal w-full text-sm">
+      <thead><tr><th scope="col" class="py-2 pr-3 text-left">Rule</th><th scope="col" class="py-2 pr-3 text-left">England, Wales, Scotland</th><th scope="col" class="py-2 text-left">Northern Ireland</th></tr></thead>
+      <tbody>{differences.map(([a, b, c]) => <tr class="border-t border-navy-100"><th scope="row" class="py-2 pr-3 text-left font-medium text-navy-900">{a}</th><td class="py-2 pr-3 text-navy-800">{b}</td><td class="py-2 text-navy-800">{c}</td></tr>)}</tbody>
+    </table></div>
+    <p class="mt-3 text-sm text-navy-700">More in <a href={route('northern-ireland-employment-rights', lang)} class="text-accent-700 underline">employment rights in Northern Ireland</a>.</p>
+  </section>
+
+  <section aria-labelledby="changes" class="mb-12">
+    <h2 id="changes" class="mb-4 text-2xl font-bold text-navy-900">What changed in April 2026</h2>
+    <ol class="space-y-3 border-l-2 border-accent-500 pl-5">
+      {changes.map(([d, t]) => <li><p class="text-sm font-semibold text-accent-700"><time datetime={d}>{date(d)}</time></p><p class="text-navy-800">{t}</p></li>)}
+    </ol>
+  </section>
+
+  <section aria-labelledby="trust" class="mb-12 rounded-lg border-l-4 border-accent-500 bg-navy-50 px-5 py-4">
+    <h2 id="trust" class="text-xl font-bold text-navy-900">Why use this rather than the first result on Google</h2>
+    <p class="mt-2 text-navy-800">Because these calculators start from your real dates and handle the cases the GOV.UK tools and their copies leave out: the relevant date that fixes service and the cap (extended by statutory notice under section 145(5)), holiday pay averaged over 52 paid weeks and the 12.07% accrual for irregular hours, a week-by-week SMP schedule across the April rate change, sick pay from day one under the 2026 rules, and the Northern Ireland figures. Every 2026/27 amount is read in the legislation or HMRC’s tables and dated. Who we are: <a href={route('about', lang)} class="text-accent-700 underline">about this site</a>. How each result is worked out and tested: <a href={route('method', lang)} class="text-accent-700 underline">method and sources</a>.</p>
+  </section>
+
+  <div class="prose prose-slate max-w-none"><Fragment set:html={x.body(h)} /></div>
+</PageLayout>

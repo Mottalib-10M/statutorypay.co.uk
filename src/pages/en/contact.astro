@@ -1,0 +1,23 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CONTACT_EMAIL, LAST_UPDATED, REVIEW_CYCLE_MONTHS, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Contact ${SITE_NAMES[lang]}: errors, method and embedding`} description="Write to UK Work Rights to report an out-of-date rate or a result that looks wrong, to ask about a formula, or to embed a statutory pay calculator on your own site." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>Email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Every message is read.</p>
+    <h2>Reporting an error</h2>
+    <p>Send the address of the page, the share link of the calculator (it carries your inputs, nothing else) and, if you can, the official text that contradicts us: a section of the Employment Rights Act, a GOV.UK guide, an HMRC table, an Acas or nidirect page. Confirmed errors are corrected and added to the tests, as set out in the <a href={route('editorial', lang)}>editorial policy</a>.</p>
+    <h2>Embedding a calculator</h2>
+    <p>Unions, advice centres, HR teams and journalists can embed the redundancy pay calculator in an iframe, free of charge. The code is on the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>What we cannot do</h2>
+    <p>We cannot advise on an individual dispute, read contracts or represent anyone. Acas (0300 123 1100) in Great Britain and the Labour Relations Agency in Northern Ireland give free advice; Citizens Advice can help too.</p>
+    <h2>Response time</h2><p>Usually within five working days, corrections first. Every figure is reviewed at least every {REVIEW_CYCLE_MONTHS} months and each April.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

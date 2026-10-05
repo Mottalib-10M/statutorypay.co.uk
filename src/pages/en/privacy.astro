@@ -1,0 +1,27 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CONTACT_EMAIL, LAST_UPDATED, LEGAL, SITE_NAMES, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Privacy policy of ${SITE_NAMES[lang]}: data, rights, complaints`} description="Privacy policy of UK Work Rights: what personal data is processed, the legal basis, retention, recipients, transfers, your rights under the GDPR and UK GDPR, and where to complain." lang={lang} noindex={true} breadcrumbs={[{ label: 'Privacy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Privacy policy</h1>
+    <p>This policy covers {SITE_URL}. It is written under Articles 12 to 14 of Regulation (EU) 2016/679 (GDPR), which applies to the publisher established in France, and takes account of the UK GDPR for visitors in the United Kingdom.</p>
+    <h2>1. Controller</h2>
+    <LegalIdentity lang={lang} />
+    <p>Contact: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. No data protection officer is appointed: the conditions of Article 37 are not met.</p>
+    <h2>2. What the calculators never collect</h2>
+    <p>Dates of birth, start dates, pay, due dates and sickness dates are processed <strong>only in your browser</strong>. They are not sent to a server, not stored by us and not linked to you. The share link writes your inputs into the page address; it only travels where you send it.</p>
+    <h2>3. Processing that does take place</h2>
+    <h3>Hosting logs</h3><p>The host records IP address, date and time, page requested, browser and referring page, for security and to keep the service running. Legal basis: legitimate interests (Article 6(1)(f)). Retention: under the host’s policy.</p>
+    <h3>Audience measurement</h3><p>No analytics or advertising tool is active today. If one is added, you will be told in a banner before it runs, and this policy will list it.</p>
+    <h3>Emails</h3><p>If you write to us, your address and message are used to reply. Legal basis: legitimate interests. Kept for three years after the last exchange.</p>
+    <h2>4. Recipients</h2><p>Nobody buys or receives your data. The host acts as a processor under Article 28.</p>
+    <h2>5. Transfers</h2><p>The host, GitHub, Inc., is in the United States; log data may be processed there under the EU-US Data Privacy Framework, the UK extension to it, and standard contractual clauses.</p>
+    <h2>6. Your rights</h2><p>Access, rectification, erasure, restriction, objection and portability (Articles 15 to 22): write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; we answer within a month. You may complain to the {LEGAL.supervisoryAuthority} (<a href={LEGAL.supervisoryAuthorityUrl} rel="nofollow noopener" target="_blank">{LEGAL.supervisoryAuthorityUrl}</a>) or, in the United Kingdom, to the Information Commissioner’s Office (<a href="https://ico.org.uk" rel="nofollow noopener" target="_blank">ico.org.uk</a>).</p>
+    <h2>7. No automated decision</h2><p>A calculator result is produced at your request and has no legal effect on you: it is not a decision within Article 22.</p>
+    <p>See also <a href={route('cookies', lang)}>cookies</a>. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

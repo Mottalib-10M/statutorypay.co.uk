@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { YEAR, LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { personSchema, organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+---
+<PageLayout title="Radif Partners and UK Work Rights: Who Checks These Figures" description="Who publishes UK Work Rights, why calculators built on real dates for UK employment rights, how the 2026/27 figures are checked, how the site is funded and how to report an error." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><p class="kicker">About</p><h1 class="mt-1 text-3xl font-bold text-navy-900 md:text-4xl">Who is behind UK Work Rights</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>UK Work Rights is published by Radif Partners, a company that builds free calculators on official rules. This site covers one question that millions of employees in the United Kingdom ask at a difficult moment, when a job is ending, a baby is due or an illness drags on: what does the law guarantee me, in pounds and in dates?</p>
+    <h2>Why another set of calculators</h2>
+    <p>GOV.UK publishes excellent tools, but each answers a narrow question and leaves the dates to you. The redundancy calculator wants your age and years of service as whole numbers, without saying which day they are measured on. The holiday calculator gives days or hours, never pounds. Commercial HR sites copy those tools, sometimes with last year’s cap. We built calculators that start from the dates on your contract and payslips and handle the cases the official tools leave out: the relevant date extended by statutory notice, holiday pay averaged over 52 paid weeks and the 12.07% accrual for irregular hours, maternity pay week by week across the April rate change, sick pay from day one under the 2026 rules, and Northern Ireland, whose redundancy cap and paternity rules differ. Every 2026/27 figure is read in the legislation or in HMRC’s tables and dated.</p>
+    <h2>How we check what we publish</h2>
+    <p>Each statutory amount is read at its source, the Increase of Limits Orders, the Up-rating Orders, the Employment Rights Acts of 1996 and 2025, the Working Time Regulations, HMRC’s rates and thresholds, and written once in a dated parameter file. Calculations are compared with the rules of the GOV.UK calculators, whose code is public, and with nidirect’s worked examples. The <a href={route('method', lang)}>method page</a> lists each formula and its limits.</p>
+    <h2>What we are not</h2>
+    <p>We are not a law firm, a union, a recruitment agency or a government body, and we sell no advice and no contacts. The figures are statutory minimums; your contract may give you more, and only a tribunal can settle a dispute. For your own case, Acas (Great Britain) and the Labour Relations Agency (Northern Ireland) give free, confidential advice.</p>
+    <h2>Money</h2>
+    <p>The site is free and asks for no account. If advertising is ever added, it will never sit above a calculator, and nothing you type will be used for it: calculations run in your browser and nothing is sent to us.</p>
+    <h2>Tell us when something is wrong</h2>
+    <p>A rate looks out of date, a case is not covered, a result does not match your employer’s letter? Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the page and, for a calculation, the share link. See also the <a href={route('editorial', lang)}>editorial policy</a> and the <a href={route('terms', lang)}>legal notice</a>.</p>
+    <p class="text-sm text-navy-600">{YEAR}/27 figures, read on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

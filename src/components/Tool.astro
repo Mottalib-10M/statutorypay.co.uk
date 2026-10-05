@@ -1,0 +1,36 @@
+---
+/** The full calculator of a tool page, picked by `tool` in the page file. */
+import RedundancyCalculator from './calc/RedundancyCalculator';
+import ReckonerCalculator from './calc/ReckonerCalculator';
+import NoticeCalculator from './calc/NoticeCalculator';
+import FinalPayCalculator from './calc/FinalPayCalculator';
+import HolidayCalculator from './calc/HolidayCalculator';
+import HolidayPayCalculator from './calc/HolidayPayCalculator';
+import LeavingHolidayCalculator from './calc/LeavingHolidayCalculator';
+import IrregularHoursCalculator from './calc/IrregularHoursCalculator';
+import BankHolidaysTool from './calc/BankHolidaysTool';
+import SmpCalculator from './calc/SmpCalculator';
+import MaternityDatesTool from './calc/MaternityDatesTool';
+import PaternityCalculator from './calc/PaternityCalculator';
+import SharedParentalCalculator from './calc/SharedParentalCalculator';
+import AdoptionCalculator from './calc/AdoptionCalculator';
+import SspCalculator from './calc/SspCalculator';
+import type { ToolKind } from '../lib/guide-types';
+interface Props { kind: ToolKind; methodHref?: string }
+const { kind, methodHref } = Astro.props;
+---
+{kind === 'redundancy' && <RedundancyCalculator client:load methodHref={methodHref} />}
+{kind === 'reckoner' && <ReckonerCalculator client:load methodHref={methodHref} />}
+{kind === 'notice' && <NoticeCalculator client:load methodHref={methodHref} />}
+{kind === 'final' && <FinalPayCalculator client:load methodHref={methodHref} />}
+{kind === 'holiday' && <HolidayCalculator client:load methodHref={methodHref} />}
+{kind === 'holidayPay' && <HolidayPayCalculator client:load methodHref={methodHref} />}
+{kind === 'leavingHoliday' && <LeavingHolidayCalculator client:load methodHref={methodHref} />}
+{kind === 'irregular' && <IrregularHoursCalculator client:load methodHref={methodHref} />}
+{kind === 'bankHolidays' && <BankHolidaysTool client:load methodHref={methodHref} />}
+{kind === 'smp' && <SmpCalculator client:load methodHref={methodHref} />}
+{kind === 'maternityDates' && <MaternityDatesTool client:load methodHref={methodHref} />}
+{kind === 'paternity' && <PaternityCalculator client:load methodHref={methodHref} />}
+{kind === 'shared' && <SharedParentalCalculator client:load methodHref={methodHref} />}
+{kind === 'adoption' && <AdoptionCalculator client:load methodHref={methodHref} />}
+{kind === 'ssp' && <SspCalculator client:load methodHref={methodHref} />}

@@ -1,0 +1,59 @@
+---
+/**
+ * Renders a page defined in `src/content/pages/`. Order (RECETTE §9.3, §21): H1 and standfirst;
+ * tool page: the folded citable block, then the calculator; guide: the citable block, then the
+ * mini-simulator, then the body. FAQ, related pages, sources and author box come from PageLayout,
+ * the FAQ shown and marked up from the same list (§7).
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import MiniSim from './calc/MiniSim';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import { route, ROUTES } from '../i18n/routes';
+import { label, groupLabel } from '../i18n/nav';
+import { t } from '../i18n/ui';
+import { pageById, GROUP_TOOL } from '../lib/guides';
+import { helpers } from '../lib/helpers';
+import { P } from '../lib/engine/params';
+import { articleSchema, faqSchema, breadcrumbSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { AUTHOR_NAME } from '../data/site-config';
+import type { PageDef } from '../lib/guide-types';
+interface Props { page: PageDef }
+const { page } = Astro.props;
+const lang = 'en';
+const ui = t(lang);
+const path = route(page.id, lang);
+const parts = page.body(helpers()).split(/<!--mini:([A-Za-z0-9_]+)-->/);
+const jsonLd = [articleSchema({ title: page.h1, description: page.description, path, lang }), webPageSchema({ name: page.h1, description: page.description, path, lang }), breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: page.nav, path }])];
+if (page.tool) jsonLd.push(webApplicationSchema({ name: page.h1, description: page.description, path, lang }));
+if (page.faqs.length) jsonLd.push(faqSchema(page.faqs, lang));
+const related = page.related.filter((id) => ROUTES.some((r) => r.id === id)).map((id) => ({ href: route(id, lang), name: label(id, lang), description: pageById(id)?.card ?? '' }));
+const sources = page.sources.map((k) => ({ name: P.sources[k].label.en, url: P.sources[k].url }));
+const methodHref = route('method', lang);
+const target = page.miniHref ?? GROUP_TOOL[page.group];
+const miniHref = target !== page.id && ROUTES.some((r) => r.id === target) ? route(target, lang) : undefined;
+---
+<PageLayout title={page.title} description={page.description} lang={lang} jsonLd={jsonLd} faqs={page.faqs} related={related} sources={sources} breadcrumbs={[{ label: page.nav }]}>
+  <article>
+    <header class="mb-6">
+      <p class="kicker">{groupLabel(page.group)}</p>
+      <h1 class="mt-1 text-3xl font-bold text-navy-900 md:text-4xl">{page.h1}</h1>
+      <p class="mt-3 text-lg text-navy-700">{page.intro}</p>
+      <p class="mt-3 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method', lang)}</a></p>
+    </header>
+    {page.tool ? (
+      <>
+        <Clamp text={page.resume} id={`clamp-${page.id}`} class="mb-6" />
+        <div data-outil data-chrome><Tool kind={page.tool} methodHref={methodHref} /></div>
+      </>
+    ) : (
+      <>
+        <p class="mb-6 text-navy-800">{page.resume}</p>
+        {page.mini && <MiniSim client:load kind={page.mini} lang={lang} href={miniHref} />}
+      </>
+    )}
+    <div class="prose prose-slate max-w-none">
+      {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <MiniSim client:load kind={p} lang={lang} href={miniHref} />)}
+    </div>
+  </article>
+</PageLayout>

@@ -1,0 +1,27 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, REVIEW_CYCLE_MONTHS, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Editorial policy of ${SITE_NAMES[lang]}: sources and corrections`} description="Where the statutory figures on UK Work Rights come from, which sources we refuse, how often rates are reviewed, how calculators are tested and how a reported error is corrected." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Editorial and corrections policy</h1>
+    <p>People use these pages to check a redundancy offer or plan a year of maternity leave. That is why we say where each figure comes from and what happens when one is wrong.</p>
+    <h2>Who is responsible</h2><p>{AUTHOR_NAME}, reachable at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Sources we use</h2>
+    <ul>
+      <li><strong>legislation.gov.uk</strong>: the Employment Rights Act 1996 and its Northern Ireland Order, the Employment Rights Act 2025, the Working Time Regulations, the annual Increase of Limits and Up-rating Orders;</li>
+      <li><strong>HMRC</strong>: rates and thresholds for employers, and the manuals for the tax treatment of termination payments;</li>
+      <li><strong>GOV.UK</strong> guides and the published code of its calculators;</li>
+      <li><strong>Acas</strong> for Great Britain and <strong>nidirect</strong> for Northern Ireland.</li>
+    </ul>
+    <h2>Sources we do not use</h2><p>HR software blogs, law-firm marketing pages and forums can point to a question, never supply a figure. When an official page lags behind the law, as GOV.UK’s neonatal care page still showing the 2025/26 rate in October 2026, the more recent and more specific text wins: here, the 2026 Up-rating Order and HMRC’s table.</p>
+    <h2>Testing</h2><p>Each calculator has automated tests drawn from official examples and from the edges of each rule (two years of service, ages 22 and 41, the caps, the 28-week sick pay limit). A failing test blocks publication.</p>
+    <h2>Review cycle</h2><p>Every figure is reviewed at least every {REVIEW_CYCLE_MONTHS} months and after each April uprating or commencement order. The date shown at the top of each page comes from the parameter file.</p>
+    <h2>Corrections</h2>
+    <ol><li>We check the report against the primary source.</li><li>We correct the parameter or the code and add a test.</li><li>The page shows the new date; a correction that changed an amount is mentioned on the page.</li></ol>
+    <h2>Independence</h2><p>No payment from employers, unions, law firms or software vendors shapes what we publish. A commercial relationship, if one ever existed, would be disclosed on the page concerned.</p>
+    <p>See also the <a href={route('method', lang)}>method</a>. Version: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>
