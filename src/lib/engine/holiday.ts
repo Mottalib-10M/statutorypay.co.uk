@@ -125,3 +125,18 @@ export const bankHolidayProRata = (bankHolidays: number, daysPerWeek: number) =>
 
 /** Which regime applies to an irregular-hours worker. */
 export const irregularRegime = (j: Jurisdiction, leaveYearStart: ISO) => (j === 'GB' && leaveYearStart >= H.irregularRegimeFrom ? 'accrual' : 'weeks');
+
+/** First year of employment (reg 15A): one-twelfth of the year’s leave accrues on the first day of each
+ *  month of employment; a fraction other than a half day is rounded up to the next half day (15A(3)). */
+export function firstYearAccrued(daysPerWeek: number, monthsBegun: number): number {
+  const m = Math.max(0, Math.min(12, Math.floor(monthsBegun)));
+  return ceilTo(entitlementDays(daysPerWeek) * m / 12, 0.5);
+}
+
+/** Notice rules for booking leave (reg 15; GOV.UK): the worker gives twice the leave plus one day; an
+ *  employer refusing gives as many days as the leave plus one; an employer imposing leave gives twice
+ *  the leave. A contract can set other periods. */
+export function bookingNotice(daysOfLeave: number) {
+  const d = Math.max(0, Math.ceil(daysOfLeave));
+  return { worker: d > 0 ? 2 * d + 1 : 0, employerRefusal: d > 0 ? d + 1 : 0, employerImposed: 2 * d };
+}

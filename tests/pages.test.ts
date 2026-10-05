@@ -11,16 +11,9 @@ import { P } from '../src/lib/engine/params';
 import { MINIS, getSpec } from '../src/lib/mini-specs';
 import { ROUTES } from '../src/i18n/routes';
 
-/** Pages planned but possibly not written yet while the site is being built: accepted as link targets.
- *  TO EMPTY once every page exists (then any link to a missing page fails). */
-const PLANNED: string[] = [
-  'redundancy-pay-calculator', 'statutory-redundancy-pay', 'redundancy-pay-table', 'redundancy-pay-cap', 'redundancy-relevant-date', 'redundancy-pay-tax', 'voluntary-redundancy', 'redundancy-variable-pay', 'redundancy-consultation', 'redundancy-time-off-job-hunting', 'lay-off-short-time-redundancy', 'suitable-alternative-employment', 'redundancy-maternity-leave',
-  'notice-period-calculator', 'statutory-notice-period', 'payment-in-lieu-of-notice', 'resignation-notice-period', 'final-pay-calculator', 'weeks-pay-explained', 'employment-status-rights',
-  'holiday-entitlement-calculator', 'holiday-pay-calculator', 'part-time-holiday-entitlement', 'irregular-hours-holiday-calculator', 'rolled-up-holiday-pay', 'holiday-pay-when-leaving', 'bank-holidays-and-annual-leave', 'carry-over-holiday', 'holiday-first-year', 'holiday-pay-overtime-commission', 'holiday-during-sick-leave', 'term-time-part-year-holiday', 'zero-hours-holiday-pay', 'booking-holiday-notice', 'holiday-on-maternity-leave',
-  'maternity-pay-calculator', 'statutory-maternity-pay', 'maternity-leave-dates-calculator', 'smp-average-weekly-earnings', 'maternity-allowance', 'enhanced-maternity-pay', 'keeping-in-touch-days', 'paternity-pay-calculator', 'paternity-leave-2026', 'shared-parental-pay-calculator', 'adoption-pay-calculator', 'neonatal-care-pay', 'parental-bereavement-pay', 'unpaid-parental-leave',
-  'statutory-sick-pay-calculator', 'statutory-sick-pay', 'ssp-changes-april-2026', 'ssp-linked-periods', 'fit-note-rules', 'company-sick-pay-vs-ssp', 'ssp-part-time-multiple-jobs',
-  'redundancy-pay-northern-ireland', 'northern-ireland-employment-rights', 'method', 'about',
-];
+/** Pages planned but not written yet: accepted as link targets while a batch is being written.
+ *  Empty when the site is complete, so that any link to a missing page fails. */
+const PLANNED: string[] = [];
 const known = (id: string) => ROUTES.some((r) => r.id === id) || PLANNED.includes(id);
 const only = process.env.PAGE_FILES?.split(',').map((s) => s.trim()).filter(Boolean);
 const pages = only?.length ? PAGES.filter((p) => only.includes(p.id)) : PAGES;

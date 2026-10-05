@@ -30,7 +30,7 @@ export default function RedundancyCalculator({ methodHref, compact = false }: { 
           <ResultCard label="Statutory redundancy pay" value={formatMoney(0)} sub={`Not due: ${r.completeYears} complete year${r.completeYears === 1 ? '' : 's'} of service on ${d(r.extendedDate)}, two are needed.`}
             lines={r.nextYearOn ? [{ label: 'Two years would be reached by a relevant date of', value: d(r.nextYearOn) }] : []} methodHref={methodHref} />
         ) : (
-          <ResultCard label="Statutory redundancy pay" value={formatMoney(r.amount)} sub={`${wk(r.weeks)} × ${formatMoney(r.weekUsed, 2)}${r.capped ? ` (weekly pay capped at ${formatMoney(r.cap)})` : ''}`} methodHref={methodHref}
+          <ResultCard label="Statutory redundancy pay" value={formatMoney(r.amount)} sub={`${wk(r.weeks)} × ${formatMoney(r.weekUsed, Number.isInteger(r.weekUsed) ? 0 : 2)}${r.capped ? ` (weekly pay capped at ${formatMoney(r.cap)})` : ''}`} methodHref={methodHref}
             lines={[
               { label: `Years at age 41 or over (× 1.5)`, value: `${r.byBand.oneHalf} → ${wk(r.byBand.oneHalf * 1.5)}`, share: (r.byBand.oneHalf * 1.5) / total },
               { label: `Years at age 22 to 40 (× 1)`, value: `${r.byBand.one} → ${wk(r.byBand.one)}`, share: r.byBand.one / total },

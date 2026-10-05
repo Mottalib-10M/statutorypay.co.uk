@@ -119,10 +119,17 @@ python3 $S/check-seo.py . ; python3 $S/check-trame.py . ; python3 $S/check-uniqu
 python3 $S/check-simulateurs.py . ; python3 $S/check-regles.py . ; python3 $S/check-portefeuille.py .
 node $S/check-sources.mjs . ; node scripts/check-legal.mjs . ; node scripts/typo-nbsp.mjs dist --check
 node $S/check-contraste.mjs dist ; node $S/check-saisie.mjs dist --max=60 ; node $S/check-nombres.mjs dist
-node $S/check-layout.mjs dist > /tmp/layout-ukwr.log 2>&1 &   # long : en arrière-plan
+node $S/check-layout.mjs "$PWD" > /tmp/layout-ukwr.log 2>&1 &   # dossier du site, pas dist ; long
+python3 scripts/build-llms.py && npm run build   # llms.txt à jour
 ```
 
 Arrêter un serveur par son port (`lsof -ti tcp:<port> | xargs kill`), jamais `pkill -f` avec un motif court.
+
+## Écrire plusieurs pages en parallèle
+
+`tests/pages.test.ts` contient une liste `PLANNED` : les identifiants qu'on y met sont acceptés comme cibles
+de liens tant que la page n'existe pas. Elle doit être **vide** quand le lot est terminé, pour qu'un lien vers
+une page absente fasse échouer le test. `check-coherence.py` ne s'applique pas à ce site (il cible les sites Next).
 
 ## Ce qu'on ne fait pas
 

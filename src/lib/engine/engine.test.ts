@@ -260,3 +260,26 @@ describe('service test for family pay', () => {
   });
 });
 import { addDays as addDaysT } from './dates';
+
+import { pre2026Ssp, post2026Ssp } from './ssp';
+describe('SSP before and after the reform (comparison helper)', () => {
+  it('3 days off: nothing before, three days now', () => {
+    expect(pre2026Ssp(500, 5, 3).amount).toBe(0); expect(post2026Ssp(500, 5, 3).amount).toBe(73.95);
+  });
+  it('below £125: nothing before, 80% now', () => {
+    expect(pre2026Ssp(100, 5, 10).amount).toBe(0); expect(post2026Ssp(100, 5, 5).amount).toBe(80);
+  });
+  it('10 days at £500: 7 days at £118.75/5 before', () => {
+    expect(pre2026Ssp(500, 5, 10)).toEqual({ paidDays: 7, amount: 166.25 });
+  });
+});
+
+import { firstYearAccrued, bookingNotice } from './holiday';
+describe('holiday: first year and booking notice (GOV.UK examples)', () => {
+  it('after the third month, 7 days (28 ÷ 12 × 3); January start gives 2.5 days', () => {
+    expect(firstYearAccrued(5, 3)).toBe(7); expect(firstYearAccrued(5, 1)).toBe(2.5); expect(firstYearAccrued(3, 1)).toBe(1.5);
+  });
+  it('3 days’ notice for 1 day; employer refusal of 10 days needs 11', () => {
+    expect(bookingNotice(1).worker).toBe(3); expect(bookingNotice(10).employerRefusal).toBe(11);
+  });
+});

@@ -68,3 +68,20 @@ export function computeSsp(i: SspInput): SspResult {
 
 /** Two periods of sickness link when the gap between them is 8 weeks (56 days) or less. */
 export const linked = (prevLastDay: ISO, nextFirstDay: ISO) => diffDays(prevLastDay, nextFirstDay) - 1 <= S.linkGapWeeks * 7;
+
+/**
+ * The rules before 6 April 2026, for comparison only (2025/26 figures in `ssp.pre2026`): no SSP below
+ * the £125 lower earnings limit, nothing for spells shorter than 4 days, the first 3 qualifying days
+ * unpaid, then £118.75 a week. `sickDays` = consecutive qualifying days off, starting a new spell.
+ */
+export function pre2026Ssp(awe: number, qualifyingDaysPerWeek: number, sickDays: number) {
+  const o = S.pre2026;
+  if (awe < o.lel || qualifyingDaysPerWeek <= 0 || sickDays < o.minPiwDays) return { paidDays: 0, amount: 0 };
+  const paidDays = Math.max(0, sickDays - o.waitingDays);
+  return { paidDays, amount: ceilPenny(floor4(o.weeklyRate / qualifyingDaysPerWeek) * paidDays) };
+}
+/** The 2026 rules for the same simple case (whole weeks not split by pay week). */
+export function post2026Ssp(awe: number, qualifyingDaysPerWeek: number, sickDays: number) {
+  const paidDays = Math.max(0, Math.min(sickDays, S.maxWeeks * qualifyingDaysPerWeek));
+  return { paidDays, amount: ceilPenny(dailySsp(awe, qualifyingDaysPerWeek) * paidDays) };
+}
