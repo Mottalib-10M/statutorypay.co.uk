@@ -12,7 +12,7 @@ for f in sorted(glob.glob(f'{root}/dist/en/**/index.html', recursive=True)):
     d = html.unescape(re.search(r'name="description" content="([^"]*)"', doc).group(1))
     path = '/' + os.path.relpath(os.path.dirname(f), f'{root}/dist').replace(os.sep, '/') + '/'
     pages.append((path, t, d))
-out = ['# UK Work Rights', '', '> Free calculators of statutory employment rights in the United Kingdom for the 2026/27 tax year: redundancy pay, notice, holiday entitlement and holiday pay, maternity, paternity, shared parental and adoption pay, and Statutory Sick Pay, for Great Britain and Northern Ireland. Published by Radif Partners. Every figure is read in legislation.gov.uk, HMRC rates and thresholds, GOV.UK, Acas or nidirect, and dated in one parameter file. Calculations run in the browser.', '', '## Pages', '']
+out = ['# Statutory Pay', '', '> Free calculators of statutory employment rights in the United Kingdom for the 2026/27 tax year: redundancy pay, notice, holiday entitlement and holiday pay, maternity, paternity, shared parental and adoption pay, and Statutory Sick Pay, for Great Britain and Northern Ireland. Published by Radif Partners. Every figure is read in legislation.gov.uk, HMRC rates and thresholds, GOV.UK, Acas or nidirect, and dated in one parameter file. Calculations run in the browser.', '', '## Pages', '']
 out += [f'- [{t}]({site}{p}): {d}' for p, t, d in pages]
 open(f'{root}/public/llms.txt', 'w', encoding='utf-8').write('\n'.join(out) + '\n')
 print(f'llms.txt: {len(pages)} pages')

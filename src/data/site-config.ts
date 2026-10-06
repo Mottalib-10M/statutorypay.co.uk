@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://uk-employment-rights.example";
-export const SITE_NAMES: Record<string, string> = {"en": "UK Work Rights"};
+export const SITE_URL = "https://statutorypay.co.uk";
+export const SITE_NAMES: Record<string, string> = {"en": "Statutory Pay"};
 export const LANG_TAGS: Record<string, string> = {"en": "en-GB"};
 export const OG_LOCALES: Record<string, string> = {"en": "en_GB"};
 export const LOCALE_TAG = 'en-GB';
@@ -10,13 +10,13 @@ export const YEAR = 2026;
 export const SITE_FOUNDED = '2026';
 export const LAST_UPDATED = '2026-10-05';
 export const AUTHOR_NAME = 'Radif Partners';
-export const AUTHOR_ROLE: Record<string, string> = {"en": "Publisher of the UK Work Rights calculators"};
+export const AUTHOR_ROLE: Record<string, string> = {"en": "Publisher of the Statutory Pay calculators"};
 export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners publishes free calculators that apply the statutory minimums of UK employment law to real dates: redundancy pay with the cap in force on the relevant date, notice, holiday entitlement and holiday pay, maternity, paternity, shared parental and adoption pay, and Statutory Sick Pay under the April 2026 rules, for Great Britain and Northern Ireland, each figure read in the legislation, HMRC tables, GOV.UK, Acas or nidirect."};
 /** Sujets sur lesquels l'editeur est competent (schema.org knowsAbout). Ce sont les
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["Statutory redundancy pay", "Notice periods", "Annual leave and holiday pay", "Statutory Maternity Pay", "Statutory Paternity Pay", "Shared Parental Pay", "Statutory Adoption Pay", "Statutory Sick Pay", "Employment Rights Act 1996", "Working Time Regulations 1998", "Employment rights in Northern Ireland"]};
-export const CONTACT_EMAIL = "contact@uk-employment-rights.example";
+export const CONTACT_EMAIL = "contact@statutorypay.co.uk";
 export const THEME_COLOR = '#012169';
 export const LOGO_SYMBOL = '§';
 export const BING_VERIFY_CODE = '';

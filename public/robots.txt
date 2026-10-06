@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://uk-employment-rights.example/sitemap-index.xml
+Sitemap: https://statutorypay.co.uk/sitemap-index.xml

@@ -9,7 +9,7 @@ const g = (n: number, d = 0) => formatMoney(n, d);
 const date = (iso: string) => displayDate(iso, 'en-GB');
 const s = (k: keyof typeof P.sources, text?: string) => `<a href="${P.sources[k].url}" target="_blank" rel="nofollow noopener noreferrer">${text ?? P.sources[k].label.en}</a>`;
 const title = 'Statutory Pay Formulas 2026/27: Our Method, Sources, Tests';
-const description = 'Method of the UK Work Rights calculators for 2026/27: the statute each formula applies, the dates that fix caps and rates, the tests run and the limits.';
+const description = 'Method of the Statutory Pay calculators for 2026/27: the statute each formula applies, the dates that fix caps and rates, the tests run and the limits.';
 const path = route('method', lang);
 const html = `
 <p>Each calculator on this site turns a section of the law into arithmetic. This page says which section, which date decides which figure, how the result is rounded and what the calculator leaves out. All the statutory values live in one parameter file, dated ${date(P.retrieved_at)}, and every page reads them from there.</p>
