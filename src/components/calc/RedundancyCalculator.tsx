@@ -16,14 +16,14 @@ export default function RedundancyCalculator({ methodHref, compact = false }: { 
   return (
     <Frame>
       <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
-        <NumberField id="rp-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="Before tax. If it varies, the average of the 12 weeks before notice" />
+        <NumberField id="rp-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="Before tax. If it varies, the average of the 12 weeks before notice" className="sm:col-span-2" />
         <SelectField id="rp-n" label="Where you work" value={s.n} onChange={(v) => set('n', v)} options={[{ value: 'GB', label: 'England, Wales or Scotland' }, { value: 'NI', label: 'Northern Ireland' }]} />
         <DateField id="rp-dob" label="Date of birth" value={s.dob} onChange={(v) => set('dob', v)} />
         <DateField id="rp-start" label="First day of continuous employment" value={s.start} onChange={(v) => set('start', v)} />
         <DateField id="rp-notice" label="Day notice of dismissal was given" value={s.notice} onChange={(v) => set('notice', v)} help="If dismissed without notice, the dismissal date" />
         <DateField id="rp-end" label="Last day of employment" value={s.end} onChange={(v) => set('end', v)} help="End of notice, or the dismissal date if paid in lieu" />
       </form>
-      <div className="mt-6">
+      <div>
         {r.reason === 'dates' ? (
           <ResultCard label="Check the dates" value="—" sub="Birth, start, notice and last day must follow each other in that order." />
         ) : !r.eligible ? (

@@ -25,7 +25,7 @@ export default function BankHolidaysTool({ methodHref }: { methodHref?: string }
         <DateField id="bh-ys" label="Leave year starts on" value={s.ys} onChange={(v) => set('ys', v)} help="Bank holidays published up to the end of 2027" />
         <NumberField id="bh-dpw" label="Days worked per week" value={s.dpw} onChange={(v) => set('dpw', v)} unit="days" max={7} decimals={1} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label={`Bank holidays in this leave year, ${NAMES[s.nation as Nation]}`} value={String(r.list.length)} sub={`${d(r.from)} to ${d(r.to)}${r.known ? '' : ' (dates after 2027 are not published yet)'}`} methodHref={methodHref}
           lines={[
             { label: 'Your statutory holiday (5.6 weeks, bank holidays can be inside it)', value: `${formatNumber(r.ent, 1)} days` },

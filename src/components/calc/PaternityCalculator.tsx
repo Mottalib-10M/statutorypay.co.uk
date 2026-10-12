@@ -22,7 +22,7 @@ export default function PaternityCalculator({ methodHref }: { methodHref?: strin
         <DateField id="pp-emp" label="Started with this employer on" value={s.emp} onChange={(v) => set('emp', v)} help={`For pay: on or before ${d(r.dates.startedBy)}`} />
         <NumberField id="pp-pay" label="Average gross weekly earnings" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label="Statutory Paternity Pay" value={r.payEligible ? gbp(r.schedule.total, 2) : 'Not due'} sub={r.payEligible ? `${s.weeks} × ${gbp(r.schedule.weeks[0]?.amount ?? 0, 2)} (the lower of ${formatMoney(FAMILY_RATE, 2)} and 90% of earnings)` : r.reasons.includes('service') ? `Pay needs 26 weeks with the employer by ${d(r.dates.qwEnd)} (start by ${d(r.dates.startedBy)})` : `Earnings below the ${formatMoney(r.dates.lel)} lower earnings limit`} methodHref={methodHref}
           lines={[
             { label: 'Paternity leave', value: r.leaveEligible ? (s.n === 'GB' ? 'Yes, a day-one right' : 'Yes') : 'No: 26 weeks’ service needed in NI', strong: true },

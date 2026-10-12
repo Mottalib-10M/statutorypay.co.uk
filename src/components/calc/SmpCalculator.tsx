@@ -23,7 +23,7 @@ export default function SmpCalculator({ methodHref, kind = 'smp' }: { methodHref
         <DateField id="smp-leave" label="Maternity leave starts on" value={s.leave} onChange={(v) => set('leave', v)} help={`Earliest: ${d(r.dates.earliestLeave)}`} />
         <DateField id="smp-emp" label="Started with this employer on" value={s.emp} onChange={(v) => set('emp', v)} help={`Must be on or before ${d(r.dates.startedBy)}`} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label={r.eligible ? 'Statutory Maternity Pay, 39 weeks' : 'Statutory Maternity Pay'} value={r.eligible ? gbp(sch.total) : 'Not due'} sub={r.eligible ? `About ${gbp(sch.total / 9)} a month on average over 9 months, before tax` : r.reasons.map((x) => why[x]).join('; ')} methodHref={methodHref}
           lines={r.eligible ? [
             { label: `Weeks 1 to 6: 90% of ${formatMoney(awe, 2)}`, value: `${gbp(sch.weeks[0].amount, 2)} a week`, share: sch.first6 / sch.total },

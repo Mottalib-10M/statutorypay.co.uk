@@ -24,7 +24,7 @@ export default function SharedParentalCalculator({ methodHref }: { methodHref?: 
         <NumberField id="sp-partner" label="Weeks the other parent will take" value={s.partnerWeeks} onChange={(v) => set('partnerWeeks', v)} unit="weeks" max={52} />
         <NumberField id="sp-awe" label="Their average gross weekly earnings" value={s.partnerAwe} onChange={(v) => set('partnerAwe', v)} unit="£" max={100000} help={`At least ${formatMoney(LEL)} a week for ShPP`} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label="Left to share between you" value={`${r.splWeeks} weeks of leave`} sub={`of which ${r.shppWeeks} weeks paid at up to ${gbp(FAMILY_RATE, 2)} a week`} methodHref={methodHref}
           lines={[
             { label: `Other parent: ${r.taken} weeks of shared parental leave`, value: s.partnerAwe >= LEL ? gbp(r.amount, 2) : 'no ShPP: earnings too low', strong: true, share: r.splWeeks ? r.taken / r.splWeeks : 0 },

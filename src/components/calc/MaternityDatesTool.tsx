@@ -20,7 +20,7 @@ export default function MaternityDatesTool({ methodHref }: { methodHref?: string
         <DateField id="md-due" label="Baby due on" value={s.due} onChange={(v) => set('due', v)} />
         <DateField id="md-leave" label="Planned first day of leave" value={s.leave} onChange={(v) => set('leave', v)} help={early ? `Too early: earliest is ${d(r.b.earliestLeave)}` : 'Any day of the week'} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label="Return to work after the full 52 weeks on" value={d(addDays(r.aml, 1))} methodHref={methodHref}
           lines={[
             { label: 'Expected week of childbirth starts (Sunday)', value: d(r.b.ewcStart) },

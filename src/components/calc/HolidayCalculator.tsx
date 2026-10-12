@@ -38,7 +38,7 @@ export default function HolidayCalculator({ methodHref }: { methodHref?: string 
         {(s.part === 'started' || s.part === 'both') && <DateField id="hl-start" label="Start date" value={s.start} onChange={(v) => set('start', v)} />}
         {(s.part === 'left' || s.part === 'both') && <DateField id="hl-leave" label="Last day of work" value={s.leave} onChange={(v) => set('leave', v)} />}
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label={s.part === 'full' ? 'Statutory holiday for a full leave year' : 'Statutory holiday for this leave year'} value={head} methodHref={methodHref}
           lines={[
             ...(s.basis === 'days' || s.part !== 'full' ? [{ label: 'Full-year entitlement in days', value: `${f1(r.days)} days`, share: r.days / P.holiday.maxDays }] : []),

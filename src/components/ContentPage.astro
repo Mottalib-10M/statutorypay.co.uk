@@ -1,8 +1,9 @@
 ---
 /**
  * Renders a page defined in `src/content/pages/`. Order (RECETTE §9.3, §21): H1 and standfirst;
- * tool page: the folded citable block, then the calculator; guide: the citable block, then the
- * mini-simulator, then the body. FAQ, related pages, sources and author box come from PageLayout,
+ * tool page: the folded citable block, then the calculator; guide: the folded citable block, then the
+ * mini-simulator, then the body; « Checked by » sits just under the simulator so that it shows on the
+ * first screen (RECETTE §5, 2026-10-11). FAQ, related pages, sources and author box come from PageLayout,
  * the FAQ shown and marked up from the same list (§7).
  */
 import PageLayout from '../layouts/PageLayout.astro';
@@ -35,25 +36,26 @@ const miniHref = target !== page.id && ROUTES.some((r) => r.id === target) ? rou
 ---
 <PageLayout title={page.title} description={page.description} lang={lang} jsonLd={jsonLd} faqs={page.faqs} related={related} sources={sources} breadcrumbs={[{ label: page.nav }]}>
   <article>
-    <header class="mb-6">
+    <header class="mb-2">
       <p class="kicker">{groupLabel(page.group)}</p>
-      <h1 class="mt-1 text-3xl font-bold text-navy-900 md:text-4xl">{page.h1}</h1>
-      <p class="mt-3 text-lg text-navy-700">{page.intro}</p>
-      <p class="mt-3 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method', lang)}</a></p>
+      <h1 class="text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{page.h1}</h1>
+      <p class="mt-1 text-base text-navy-700 sm:text-lg">{page.intro}</p>
     </header>
     {page.tool ? (
       <>
-        <Clamp text={page.resume} id={`clamp-${page.id}`} class="mb-6" />
-        <div data-outil data-chrome><Tool kind={page.tool} methodHref={methodHref} /></div>
+        <Clamp text={page.resume} id={`clamp-${page.id}`} class="mb-2" />
+        <div data-outil data-chrome class="mb-4"><Tool kind={page.tool} methodHref={methodHref} /></div>
+        <p class="mb-8 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method', lang)}</a></p>
       </>
     ) : (
       <>
-        <p class="mb-6 text-navy-800">{page.resume}</p>
-        {page.mini && <MiniSim client:load kind={page.mini} lang={lang} href={miniHref} />}
+        <Clamp text={page.resume} id={`clamp-${page.id}`} class="mb-2" />
+        {page.mini && <MiniSim client:load spacing="mb-4 mt-2" lead kind={page.mini} lang={lang} href={miniHref} />}
+        <p class="mb-8 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method', lang)}</a></p>
       </>
     )}
     <div class="prose prose-slate max-w-none">
-      {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <MiniSim client:load kind={p} lang={lang} href={miniHref} />)}
+      {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <MiniSim client:load secondary kind={p} lang={lang} href={miniHref} />)}
     </div>
   </article>
 </PageLayout>

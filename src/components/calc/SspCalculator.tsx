@@ -25,13 +25,13 @@ export default function SspCalculator({ methodHref }: { methodHref?: string }) {
   return (
     <Frame>
       <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
-        <NumberField id="ssp-awe" label="Average gross weekly earnings" value={s.awe} onChange={(v) => set('awe', v)} unit="£" max={100000} help="Usually the 8 weeks before the first day off sick" />
+        <NumberField id="ssp-awe" label="Average gross weekly earnings" value={s.awe} onChange={(v) => set('awe', v)} unit="£" max={100000} help="Usually the 8 weeks before the first day off sick" className="sm:col-span-2" />
         <SelectField id="ssp-pat" label="Days you normally work" value={s.pat} onChange={(v) => set('pat', v)} options={Object.entries(PATTERNS).map(([value, p]) => ({ value, label: p.label }))} />
         <DateField id="ssp-from" label="First day off sick" value={s.from} onChange={(v) => set('from', v)} help="On or after 6 April 2026" />
         <DateField id="ssp-to" label="Last day off sick" value={s.to} onChange={(v) => set('to', v)} />
         <NumberField id="ssp-paid" label="SSP days already paid in a linked spell" value={s.paid} onChange={(v) => set('paid', v)} unit="days" max={200} help="Spells 8 weeks or less apart count together" />
       </form>
-      <div className="mt-6">
+      <div>
         {!r.supported ? (
           <ResultCard label="Statutory Sick Pay" value="—" sub={s.from < P.ssp.reformDate ? `This calculator applies the rules for sickness starting on or after 6 April 2026. Earlier spells had ${P.ssp.pre2026.waitingDays} waiting days, a ${formatMoney(P.ssp.pre2026.lel)} earnings threshold and a ${formatMoney(P.ssp.pre2026.weeklyRate, 2)} rate.` : 'Check the dates and the working pattern.'} methodHref={methodHref} />
         ) : (

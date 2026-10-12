@@ -25,7 +25,7 @@ export default function AdoptionCalculator({ methodHref }: { methodHref?: string
         <DateField id="ad-emp" label="Started with this employer on" value={s.emp} onChange={(v) => set('emp', v)} help={`For pay: on or before ${d(r.a.startedBy)}`} />
         <NumberField id="ad-pay" label="Average gross weekly earnings" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label="Statutory Adoption Pay, 39 weeks" value={ok ? gbp(r.sch.total) : 'Not due'} sub={ok ? `6 weeks at ${gbp(r.sch.weeks[0].amount, 2)}, then up to ${gbp(FAMILY_RATE, 2)} a week` : !r.service ? `26 weeks with the employer by ${d(r.a.mwEnd)} are needed` : `Earnings below the ${formatMoney(r.a.lel)} lower earnings limit`} methodHref={methodHref}
           lines={[
             { label: 'Matching week', value: `${d(r.a.mwStart)} to ${d(r.a.mwEnd)}` },

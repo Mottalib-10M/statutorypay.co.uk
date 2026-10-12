@@ -24,7 +24,7 @@ export default function HolidayPayCalculator({ methodHref }: { methodHref?: stri
         <NumberField id="hp-weeks" label="Paid weeks in the reference period" value={s.weeks} onChange={(v) => set('weeks', v)} unit="weeks" max={104} help="Up to 52 weeks in which you were paid" />
         <NumberField id="hp-taken" label="Days of holiday to price" value={s.taken} onChange={(v) => set('taken', v)} unit="days" max={60} decimals={1} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label={`Holiday pay for ${formatNumber(s.taken, 1)} days`} value={formatMoney(r.pay)} sub={`A day’s holiday pay: ${formatMoney(r.dayNormal, 2)} at normal rate`} methodHref={methodHref}
           lines={[
             { label: 'A week’s pay at normal rate (basic + regular extras)', value: formatMoney(r.normalWeek, 2), strong: true },

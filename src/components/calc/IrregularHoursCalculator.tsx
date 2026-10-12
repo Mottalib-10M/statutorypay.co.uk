@@ -25,7 +25,7 @@ export default function IrregularHoursCalculator({ methodHref }: { methodHref?: 
         <NumberField id="ir-hours" label="Hours worked in the pay period" value={s.hours} onChange={(v) => set('hours', v)} unit="hours" max={800} decimals={1} help="Hours actually worked, not hours on leave" />
         <NumberField id="ir-pay" label="Pay for that work, gross" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="Basic pay, overtime and commission for the period" />
       </form>
-      <div className="mt-6">
+      <div>
         {gb ? (
           <ResultCard label="Holiday accrued this pay period" value={`${r.acc.credited} hours`} sub={`${formatNumber(s.hours, 1)} hours × ${formatPercent(P.holiday.irregularAccrualRate, 2)} = ${formatNumber(r.acc.exact, 2)}, rounded to the nearest hour`} methodHref={methodHref}
             lines={[

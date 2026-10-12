@@ -22,7 +22,7 @@ export default function NoticeCalculator({ methodHref }: { methodHref?: string }
         <DateField id="nt-given" label="Day notice is given" value={s.given} onChange={(v) => set('given', v)} help="Notice starts running the next day" />
         <NumberField id="nt-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="For the value of the notice period or pay in lieu" />
       </form>
-      <div className="mt-6">
+      <div>
         {bad ? <ResultCard label="Check the dates" value="—" sub="Notice cannot be given before employment starts." /> : (
           <ResultCard label={s.by === 'employee' ? 'Notice you owe your employer' : 'Notice your employer owes you'} value={wk(r.appliedWeeks)} sub={r.appliedWeeks ? `Employment ends on ${d(r.endDate)}` : 'Under one month of service: no statutory minimum, the contract alone decides.'} methodHref={methodHref}
             lines={[

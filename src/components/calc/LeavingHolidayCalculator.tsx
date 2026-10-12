@@ -17,10 +17,10 @@ export default function LeavingHolidayCalculator({ methodHref }: { methodHref?: 
         <DateField id="lh-leave" label="Last day of employment" value={s.leave} onChange={(v) => set('leave', v)} />
         <NumberField id="lh-dpw" label="Days worked per week" value={s.dpw} onChange={(v) => set('dpw', v)} unit="days" max={7} decimals={1} />
         <NumberField id="lh-taken" label="Days taken this leave year" value={s.taken} onChange={(v) => set('taken', v)} unit="days" max={60} decimals={1} help="Include bank holidays taken if they count in your allowance" />
-        <NumberField id="lh-extra" label="Extra contractual days a year" value={s.extra} onChange={(v) => set('extra', v)} unit="days" max={40} decimals={1} help="Above 5.6 weeks; only if the contract pays them out" />
+        <NumberField id="lh-extra" label="Extra contractual days a year" value={s.extra} onChange={(v) => set('extra', v)} unit="days" max={40} decimals={1} help="Above 5.6 weeks; only if the contract pays them out" className="sm:col-span-2" />
         <NumberField id="lh-pay" label="A week’s pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label={r.owedByWorker ? 'You have taken more than you accrued' : 'Holiday pay due on your last payslip'} value={r.owedByWorker ? `${formatNumber(-r.days, 1)} days` : formatMoney(r.pay)} sub={r.owedByWorker ? 'Your employer can only deduct this if a written agreement or your contract allows it.' : `${formatNumber(r.days, 2)} days × ${formatMoney(r.dayPay, 2)}`} methodHref={methodHref}
           lines={[
             { label: 'A: annual entitlement', value: `${formatNumber(r.A, 1)} days` },

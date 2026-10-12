@@ -20,7 +20,7 @@ export default function FinalPayCalculator({ methodHref }: { methodHref?: string
         <NumberField id="fp-dpw" label="Days worked per week" value={s.dpw} onChange={(v) => set('dpw', v)} unit="days" max={7} decimals={1} />
         <NumberField id="fp-arrears" label="Wages still owed (arrears)" value={s.arrears} onChange={(v) => set('arrears', v)} unit="£" max={1000000} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label="Total due when the job ends, before tax" value={formatMoney(r.total)} methodHref={methodHref}
           lines={[
             { label: 'Redundancy pay (statutory + extra)', value: formatMoney(r.redundancy), share: r.redundancy / t },

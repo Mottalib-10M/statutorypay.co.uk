@@ -2,10 +2,10 @@
  * Home page tool: what the statutory minimums give someone today, from three facts (start date,
  * date of birth, pay). Every line calls the engine used by the dedicated calculators.
  */
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import NumberField from '../ui/NumberField';
 import SelectField from '../ui/SelectField';
-import { DateField, Frame, useUrlState } from './kit';
+import { DateField, Frame, StickyFigure, useBelow, useUrlState } from './kit';
 import { computeRedundancy } from '../../lib/engine/redundancy';
 import { statutoryNoticeWeeks, noticeEnd } from '../../lib/engine/notice';
 import { entitlementDays } from '../../lib/engine/holiday';
@@ -35,6 +35,8 @@ export default function RightsChecker({ links }: { links: Record<string, string>
     return { nw, red, years, ewc, famOk, ninetyPct, patLeaveOn, ni };
   }, [s]);
   const bad = !(s.dob < s.start && s.start <= s.on);
+  const card = useRef<HTMLDivElement>(null);
+  const below = useBelow(card);
   const Row = ({ title, value, detail, href }: { title: string; value: string; detail: string; href?: string }) => (
     <tr className="border-t border-navy-200 align-top">
       <th scope="row" className="py-3 pr-3 text-left font-medium text-navy-900">{href ? <a href={href} className="underline decoration-accent-300 underline-offset-2 hover:text-accent-700">{title}</a> : title}</th>
@@ -44,7 +46,7 @@ export default function RightsChecker({ links }: { links: Record<string, string>
   );
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-3" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <DateField id="rc-start" label="Started with your employer on" value={s.start} onChange={(v) => set('start', v)} />
         <DateField id="rc-dob" label="Date of birth" value={s.dob} onChange={(v) => set('dob', v)} />
         <NumberField id="rc-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="Annual salary ÷ 52" />
@@ -52,7 +54,7 @@ export default function RightsChecker({ links }: { links: Record<string, string>
         <SelectField id="rc-n" label="Where you work" value={s.n} onChange={(v) => set('n', v)} options={[{ value: 'GB', label: 'England, Wales or Scotland' }, { value: 'NI', label: 'Northern Ireland' }]} />
         <DateField id="rc-on" label="Check on" value={s.on} onChange={(v) => set('on', v)} help="Today by default" />
       </form>
-      <div aria-live="polite" className="result-card mt-6 p-4 sm:p-5">
+      <div ref={card} aria-live="polite" data-resultat className="result-card p-4 sm:p-5">
         {bad ? <p className="text-navy-800">Check the dates: birth before start, start before the check date.</p> : (<>
           <p className="text-sm font-medium text-navy-700">On {d(s.on)}, after {r.years} complete year{r.years === 1 ? '' : 's'} of service, the law gives you at least:</p>
           <div className="mt-2 overflow-x-auto"><table className="w-full text-sm"><tbody>
@@ -64,6 +66,7 @@ export default function RightsChecker({ links }: { links: Record<string, string>
             <Row title="Paternity leave" value={r.patLeaveOn <= s.on ? 'yes' : `from ${d(r.patLeaveOn)}`} detail={r.ni ? 'Northern Ireland: after 26 weeks of service, within 56 days of the birth.' : 'A day-one right in Great Britain since 6 April 2026; pay still needs 26 weeks.'} href={links.paternity} />
           </tbody></table></div>
           <p className="mt-3 text-xs text-navy-600">Statutory minimums for an employee. Your contract can give more, never less.</p>
+          {below && <StickyFigure label="Redundancy pay if notice were given today" value={r.red.eligible ? formatMoney(r.red.amount) : formatMoney(0)} target={card} />}
         </>)}
       </div>
     </Frame>

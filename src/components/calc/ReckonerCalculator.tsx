@@ -22,7 +22,7 @@ export default function ReckonerCalculator({ methodHref }: { methodHref?: string
         <NumberField id="rk-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} />
         <SelectField id="rk-n" label="Where you work" value={s.n} onChange={(v) => set('n', v)} options={[{ value: 'GB', label: `Great Britain (cap ${formatMoney(CAP_GB)})` }, { value: 'NI', label: `Northern Ireland (cap ${formatMoney(CAP_NI)})` }]} />
       </form>
-      <div className="mt-6">
+      <div>
         <ResultCard label="Statutory redundancy pay" value={formatMoney(amount)} sub={s.years < P.redundancy.qualifyingYears ? 'Under two complete years: no statutory redundancy pay.' : `${formatNumber(weeks, 1)} weeks of pay at ${formatMoney(week, 2)}`} methodHref={methodHref}
           lines={[
             { label: 'Weeks from the age × service table', value: formatNumber(weeks, 1), strong: true },

@@ -10,23 +10,23 @@ import NumberField from '../ui/NumberField';
 import SelectField from '../ui/SelectField';
 import { getSpec } from '../../lib/mini-specs';
 
-interface Props { kind: string; lang?: string; href?: string }
+interface Props { kind: string; lang?: string; href?: string; /** Margins: the page's lead mini sits closer to the answer above it. */ spacing?: string; /** A mini placed inside the body text, not the page's lead simulator (RECETTE §5, 2026-10-11). */ secondary?: boolean; /** The page's lead simulator, tighter at the top so that it fits the first screen. */ lead?: boolean }
 
-export default function MiniSim({ kind, lang = 'en', href }: Props) {
+export default function MiniSim({ kind, lang = 'en', href, spacing = 'my-8', secondary = false, lead = false }: Props) {
   const spec = getSpec(kind, lang);
   const [v, setV] = useState<Record<string, number>>(() => Object.fromEntries(spec.inputs.map((i) => [i.id, i.def])));
   const out = useMemo(() => spec.run(v), [v, spec]);
   const set = (id: string) => (x: number) => setV((o) => ({ ...o, [id]: x }));
   return (
-    <div data-chrome data-mini={kind} className="not-prose rechner-mini my-8 rounded-xl border border-accent-200 bg-white p-4 shadow-sm sm:p-5">
+    <div data-chrome data-mini={kind} data-simulateur-secondaire={secondary ? '' : undefined} className={`not-prose rechner-mini ${spacing} rounded-xl border border-accent-200 bg-white p-4 shadow-sm ${lead ? 'sm:px-5 sm:pb-5' : 'sm:p-5'}`}>
       <p className="text-base font-semibold text-navy-900">{spec.title}</p>
-      <div className="mt-3 grid gap-5 sm:grid-cols-2">
+      <div className={`${lead ? 'mt-2' : 'mt-3'} grid gap-5 sm:grid-cols-2`}>
         <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
           {spec.inputs.map((i) => i.options
             ? <SelectField key={i.id} id={`m-${kind}-${i.id}`} label={i.label} value={String(v[i.id])} onChange={(x) => set(i.id)(Number(x))} options={i.options} />
             : <NumberField key={i.id} id={`m-${kind}-${i.id}`} label={i.label} value={v[i.id]} onChange={set(i.id)} unit={i.unit} max={i.max} decimals={i.decimals} />)}
         </form>
-        <div aria-live="polite" className="rounded-lg bg-navy-50 p-4">
+        <div aria-live="polite" data-resultat={secondary ? undefined : ''} className="rounded-lg bg-navy-50 p-4">
           <p className="text-sm font-medium text-navy-600">{out.head[0]}</p>
           <p className="tabular-nums mt-1 text-3xl font-bold text-navy-900">{out.head[1]}</p>
           <table className="mt-3 w-full text-sm"><tbody className="divide-y divide-navy-200">
