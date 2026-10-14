@@ -19,7 +19,7 @@ export default function IrregularHoursCalculator({ methodHref }: { methodHref?: 
   const summary = () => gb ? `${formatNumber(s.hours, 1)} hours worked → ${r.acc.credited} hours of holiday accrued; rolled-up holiday pay ${formatMoney(r.rolled, 2)}.` : 'Northern Ireland: 5.6 weeks a year, no 12.07% accrual.';
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="ir-n" label="Where you work" value={s.n} onChange={(v) => set('n', v)} options={[{ value: 'GB', label: 'England, Wales or Scotland' }, { value: 'NI', label: 'Northern Ireland' }]} />
         <SelectField id="ir-freq" label="Pay period" value={s.freq} onChange={(v) => set('freq', v)} options={[{ value: 'weekly', label: 'Weekly' }, { value: 'fortnightly', label: 'Fortnightly' }, { value: 'fourweekly', label: 'Every 4 weeks' }, { value: 'monthly', label: 'Monthly' }]} />
         <NumberField id="ir-hours" label="Hours worked in the pay period" value={s.hours} onChange={(v) => set('hours', v)} unit="hours" max={800} decimals={1} help="Hours actually worked, not hours on leave" />

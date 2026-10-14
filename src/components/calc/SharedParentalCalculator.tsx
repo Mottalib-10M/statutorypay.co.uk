@@ -18,7 +18,7 @@ export default function SharedParentalCalculator({ methodHref }: { methodHref?: 
   const summary = () => `Shared parental: ${r.splWeeks} weeks of leave and ${r.shppWeeks} weeks of pay to share; partner taking ${r.taken} weeks gets ${gbp(r.amount, 2)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <NumberField id="sp-leave" label="Maternity or adoption leave taken" value={s.leave} onChange={(v) => set('leave', v)} unit="weeks" max={52} help="At least 2 weeks after the birth" />
         <NumberField id="sp-pay" label="Weeks of SMP, SAP or Maternity Allowance used" value={s.pay} onChange={(v) => set('pay', v)} unit="weeks" max={39} />
         <NumberField id="sp-partner" label="Weeks the other parent will take" value={s.partnerWeeks} onChange={(v) => set('partnerWeeks', v)} unit="weeks" max={52} />

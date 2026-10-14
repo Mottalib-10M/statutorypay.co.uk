@@ -16,7 +16,7 @@ export default function HolidayPayCalculator({ methodHref }: { methodHref?: stri
   const summary = () => `Holiday pay for ${formatNumber(s.taken, 1)} days: ${formatMoney(r.pay)} (a week's pay ${formatMoney(r.normalWeek)} at normal rate).`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <Toggle id="hp-hours" label="Working pattern" value={s.hours} onChange={(v) => set('hours', v)} options={[{ value: 'regular', label: 'Regular hours' }, { value: 'irregular', label: 'Irregular' }]} />
         <NumberField id="hp-dpw" label="Days worked per week" value={s.dpw} onChange={(v) => set('dpw', v)} unit="days" max={7} decimals={1} />
         <NumberField id="hp-basic" label="Basic pay for a normal week" value={s.basic} onChange={(v) => set('basic', v)} unit="£" max={100000} help="Contractual pay for the normal hours, gross" />

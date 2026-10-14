@@ -46,7 +46,7 @@ export default function RightsChecker({ links }: { links: Record<string, string>
   );
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <DateField id="rc-start" label="Started with your employer on" value={s.start} onChange={(v) => set('start', v)} />
         <DateField id="rc-dob" label="Date of birth" value={s.dob} onChange={(v) => set('dob', v)} />
         <NumberField id="rc-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="Annual salary ÷ 52" />

@@ -16,7 +16,7 @@ export default function ReckonerCalculator({ methodHref }: { methodHref?: string
   const summary = () => `Age ${s.age}, ${s.years} years: ${formatNumber(weeks, 1)} weeks × ${formatMoney(week, 2)} = ${formatMoney(amount)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <NumberField id="rk-age" label="Age on the relevant date" value={s.age} onChange={(v) => set('age', v)} unit="years" max={99} />
         <NumberField id="rk-years" label="Complete years of service" value={s.years} onChange={(v) => set('years', v)} unit="years" max={60} help="Only the last 20 count" />
         <NumberField id="rk-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} />

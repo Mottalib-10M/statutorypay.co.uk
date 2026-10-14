@@ -24,7 +24,7 @@ export default function HolidayCalculator({ methodHref }: { methodHref?: string 
   const summary = () => `Statutory holiday: ${head} (${s.part === 'full' ? 'full leave year' : `${formatNumber(frac * 100, 1)}% of the leave year`}).`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="hl-basis" label="Work out the entitlement in" value={s.basis} onChange={(v) => set('basis', v)} options={[{ value: 'days', label: 'Days worked per week' }, { value: 'hours', label: 'Hours worked per week' }, { value: 'shifts', label: 'Shifts in a repeating pattern' }]} />
         <SelectField id="hl-part" label="Leave year" value={s.part} onChange={(v) => set('part', v)} options={[{ value: 'full', label: 'Worked the whole year' }, { value: 'started', label: 'Started part way through' }, { value: 'left', label: 'Leaving part way through' }, { value: 'both', label: 'Started and leaving in the same year' }]} />
         {s.basis === 'shifts' ? (<>

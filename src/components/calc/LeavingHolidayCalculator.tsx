@@ -12,7 +12,7 @@ export default function LeavingHolidayCalculator({ methodHref }: { methodHref?: 
   const summary = () => `Untaken holiday on leaving: ${formatNumber(r.days, 2)} days, ${formatMoney(r.pay)} gross.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <DateField id="lh-ys" label="Leave year started on" value={s.ys} onChange={(v) => set('ys', v)} />
         <DateField id="lh-leave" label="Last day of employment" value={s.leave} onChange={(v) => set('leave', v)} />
         <NumberField id="lh-dpw" label="Days worked per week" value={s.dpw} onChange={(v) => set('dpw', v)} unit="days" max={7} decimals={1} />

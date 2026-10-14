@@ -11,7 +11,7 @@ export default function FinalPayCalculator({ methodHref }: { methodHref?: string
   const summary = () => `Final pay (gross): ${formatMoney(r.total)}: redundancy ${formatMoney(r.redundancy)}, notice ${formatMoney(r.notice)}, holiday ${formatMoney(r.holiday)}, arrears ${formatMoney(r.arrears)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <NumberField id="fp-red" label="Statutory redundancy pay" value={s.red} onChange={(v) => set('red', v)} unit="£" max={100000} help="From the redundancy pay calculator" />
         <NumberField id="fp-extra" label="Extra redundancy pay from the employer" value={s.extra} onChange={(v) => set('extra', v)} unit="£" max={5000000} help="Enhanced or ex gratia amount, if any" />
         <NumberField id="fp-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} />

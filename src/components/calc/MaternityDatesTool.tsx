@@ -16,7 +16,7 @@ export default function MaternityDatesTool({ methodHref }: { methodHref?: string
   const summary = () => `Due ${d(s.due)}: qualifying week ${d(r.b.qwStart)}-${d(r.b.qwEnd)}, earliest leave ${d(r.b.earliestLeave)}, leave from ${d(s.leave)} to ${d(r.aml)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <DateField id="md-due" label="Baby due on" value={s.due} onChange={(v) => set('due', v)} />
         <DateField id="md-leave" label="Planned first day of leave" value={s.leave} onChange={(v) => set('leave', v)} help={early ? `Too early: earliest is ${d(r.b.earliestLeave)}` : 'Any day of the week'} />
       </form>

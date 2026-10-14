@@ -19,7 +19,7 @@ export default function AdoptionCalculator({ methodHref }: { methodHref?: string
   const summary = () => `Statutory Adoption Pay: ${ok ? gbp(r.sch.total) : 'not due'}, leave from ${d(s.place)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <DateField id="ad-match" label="Told you were matched on" value={s.match} onChange={(v) => set('match', v)} />
         <DateField id="ad-place" label="Leave and pay start on" value={s.place} onChange={(v) => set('place', v)} help="Up to 14 days before placement (UK adoption)" />
         <DateField id="ad-emp" label="Started with this employer on" value={s.emp} onChange={(v) => set('emp', v)} help={`For pay: on or before ${d(r.a.startedBy)}`} />

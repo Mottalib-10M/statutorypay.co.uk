@@ -15,7 +15,7 @@ export default function RedundancyCalculator({ methodHref, compact = false }: { 
   const summary = () => `Statutory redundancy pay: ${formatMoney(r.amount, 2)} (${wk(r.weeks)} × ${formatMoney(r.weekUsed, 2)}), ${r.countedYears} years counted, relevant date ${d(r.relevantDate)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <NumberField id="rp-pay" label="Gross weekly pay" value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={100000} help="Before tax. If it varies, the average of the 12 weeks before notice" className="sm:col-span-2" />
         <SelectField id="rp-n" label="Where you work" value={s.n} onChange={(v) => set('n', v)} options={[{ value: 'GB', label: 'England, Wales or Scotland' }, { value: 'NI', label: 'Northern Ireland' }]} />
         <DateField id="rp-dob" label="Date of birth" value={s.dob} onChange={(v) => set('dob', v)} />

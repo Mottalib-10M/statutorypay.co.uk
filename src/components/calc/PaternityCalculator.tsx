@@ -14,7 +14,7 @@ export default function PaternityCalculator({ methodHref }: { methodHref?: strin
   const summary = () => `Paternity: leave ${r.leaveEligible ? 'yes' : 'no'}, pay ${r.payEligible ? gbp(r.schedule.total, 2) : 'not due'}; take it by ${d(r.windowEnd)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="pp-n" label="Where you work" value={s.n} onChange={(v) => set('n', v)} options={[{ value: 'GB', label: 'England, Wales or Scotland' }, { value: 'NI', label: 'Northern Ireland' }]} />
         <Toggle id="pp-weeks" label="Weeks of leave" value={String(s.weeks)} onChange={(v) => set('weeks', Number(v))} options={[{ value: '1', label: '1 week' }, { value: '2', label: '2 weeks' }]} />
         <DateField id="pp-due" label="Baby due on" value={s.due} onChange={(v) => set('due', v)} />

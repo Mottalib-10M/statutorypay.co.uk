@@ -16,7 +16,7 @@ export default function SmpCalculator({ methodHref, kind = 'smp' }: { methodHref
   const why: Record<string, string> = { earnings: `average weekly earnings below the ${formatMoney(r.dates.lel)} lower earnings limit`, service: `employment must have started by ${d(r.dates.startedBy)}`, leaveTooEarly: `leave cannot start before ${d(r.dates.earliestLeave)}` };
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <Toggle id="smp-mode" label="Enter your pay" value={s.mode} onChange={(v) => { set('mode', v); set('pay', v === 'year' ? Math.round(s.pay * 52) : Math.round(s.pay / 52)); }} options={[{ value: 'week', label: 'Per week' }, { value: 'year', label: 'Per year' }]} />
         <NumberField id="smp-pay" label={s.mode === 'year' ? 'Gross pay per year' : 'Average gross weekly earnings'} value={s.pay} onChange={(v) => set('pay', v)} unit="£" max={2000000} help="Average of the 8 weeks up to the qualifying week" />
         <DateField id="smp-due" label="Baby due on" value={s.due} onChange={(v) => set('due', v)} />

@@ -15,7 +15,7 @@ export default function NoticeCalculator({ methodHref }: { methodHref?: string }
   const summary = () => `Notice: ${wk(r.appliedWeeks)} (statutory ${wk(r.statutoryWeeks)}, contract ${wk(r.contractualWeeks)}), last day ${d(r.endDate)}, notice pay ${formatMoney(r.noticePay)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <Toggle id="nt-by" label="Who gives notice?" value={s.by} onChange={(v) => set('by', v)} options={[{ value: 'employer', label: 'Employer' }, { value: 'employee', label: 'Employee' }]} />
         <NumberField id="nt-contract" label="Notice in the contract" value={s.contract} onChange={(v) => set('contract', v)} unit="weeks" max={52} help="0 if the contract says nothing; 1 month ≈ 4 weeks" />
         <DateField id="nt-start" label="First day of continuous employment" value={s.start} onChange={(v) => set('start', v)} />

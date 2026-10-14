@@ -20,7 +20,7 @@ export default function BankHolidaysTool({ methodHref }: { methodHref?: string }
   const summary = () => `${NAMES[s.nation as Nation]}: ${r.list.length} bank holidays between ${d(r.from)} and ${d(r.to)}.`;
   return (
     <Frame>
-      <form className="grid gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-4 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="bh-n" label="Nation" value={s.nation} onChange={(v) => set('nation', v)} options={Object.entries(NAMES).map(([value, label]) => ({ value, label }))} />
         <DateField id="bh-ys" label="Leave year starts on" value={s.ys} onChange={(v) => set('ys', v)} help="Bank holidays published up to the end of 2027" />
         <NumberField id="bh-dpw" label="Days worked per week" value={s.dpw} onChange={(v) => set('dpw', v)} unit="days" max={7} decimals={1} />
