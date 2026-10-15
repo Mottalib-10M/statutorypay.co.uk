@@ -54,9 +54,9 @@ const changes: Array<[string, string]> = [
   [P.holiday.recordsFrom, `Employers must keep holiday and holiday pay records for ${P.holiday.recordsYears} years.`],
 ];
 ---
-<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} sources={sources} topDate={false}>
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} sources={sources}>
   <header class="mb-3 border-b-4 border-double border-navy-200 pb-2">
-    <p class="kicker">2026/27 tax year · figures read on <time datetime={LAST_UPDATED}>{date(LAST_UPDATED)}</time></p>
+    <p class="kicker">2026/27 tax year</p>
     <h1 class="mt-1 text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{x.h1}</h1>
     <p class="mt-1.5 max-w-none text-base text-navy-700 sm:text-lg">{x.intro}</p>
   </header>
